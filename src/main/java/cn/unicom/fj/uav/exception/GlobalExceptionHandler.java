@@ -48,13 +48,13 @@ public class GlobalExceptionHandler implements ResponseBodyAdvice<Object> {
 
         if(!(body instanceof ResponseInfo)){
 
-            JSONObject jsonStu = (JSONObject)JSONObject.toJSON(body);
-
-            Object code = jsonStu.get("status");
-            if(null != code && ((Integer)code) == HttpStatus.NOT_FOUND.value()){
-
-                return new ResponseInfo(SysHttpStatus.ERROR.isSuccess(), "URL Not Found");
-            }
+//            JSONObject jsonStu = (JSONObject)JSONObject.toJSON(body);
+//
+//            Object code = jsonStu.get("status");
+//            if(null != code && ((Integer)code) == HttpStatus.NOT_FOUND.value()){
+//
+//                return new ResponseInfo(SysHttpStatus.ERROR.isSuccess(), "URL Not Found");
+//            }
             return new ResponseInfo<>(SysHttpStatus.SUCCESS.isSuccess(), body, SysHttpStatus.SUCCESS.getMsg());
         }else{
             return body;
