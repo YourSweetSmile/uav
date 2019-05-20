@@ -31,7 +31,10 @@ public class TestController {
 
         Map<String,Object> res = new HashMap<>();
 
-        List<DeviceHelper> list = deviceService.getDevice(null);
+        DeviceHelper deviceHelper = new DeviceHelper();
+        deviceHelper.setId(new Short("1"));
+
+        List<DeviceHelper> list = deviceService.getDevice(deviceHelper);
         res.put("msg", list);
         return res;
     }
