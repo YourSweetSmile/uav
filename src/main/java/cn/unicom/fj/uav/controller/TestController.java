@@ -1,9 +1,13 @@
 package cn.unicom.fj.uav.controller;
 
+import cn.unicom.fj.uav.exception.SysRuntimeExeption;
 import cn.unicom.fj.uav.model.helper.DeviceHelper;
 import cn.unicom.fj.uav.service.DeviceService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -37,5 +41,13 @@ public class TestController {
         List<DeviceHelper> list = deviceService.getDevice(deviceHelper);
         res.put("msg", list);
         return res;
+    }
+
+    @RequestMapping("/page/get")
+    public PageInfo getScopedDevice(@RequestParam("pageNo") Integer pageNo,
+                                    @RequestParam("pageSize") Integer pageSize,
+                                    @RequestBody DeviceHelper deviceHelper){
+
+        return deviceService.getScopedDevice(pageNo, pageSize, deviceHelper);
     }
 }

@@ -21,7 +21,8 @@ public interface DeviceHelperMapper extends DeviceMapper {
             "power_max, capacity, fly_mileage, wind_res, water_res, hit_res, flexibility, ",
             "emc_res, img_id, wing_loss, power_loss, camera_loss, pack_loss, engine_loss, ",
             "base_loss, create_time, device_desc",
-            "from ent_device"
+            "from ent_device",
+            "where id=#{id}"
     })
     @Results({
             @Result(column="id", property="id", jdbcType= JdbcType.SMALLINT, id=true),

@@ -1,7 +1,6 @@
 package cn.unicom.fj.uav.exception;
 
-import java.util.Map;
-
+import com.alibaba.fastjson.JSONObject;
 import cn.unicom.fj.uav.common.SysHttpStatus;
 import cn.unicom.fj.uav.config.ResponseInfo;
 import com.fasterxml.jackson.core.JsonParseException;
@@ -49,12 +48,14 @@ public class GlobalExceptionHandler implements ResponseBodyAdvice<Object> {
 
         if(!(body instanceof ResponseInfo)){
 
-            Object code = ((Map) body).get("status");
+            JSONObject jsonStu = (JSONObject)JSONObject.toJSON(body);
+
+            Object code = jsonStu.get("status");
             if(null != code && ((Integer)code) == HttpStatus.NOT_FOUND.value()){
 
                 return new ResponseInfo(SysHttpStatus.ERROR.isSuccess(), "URL Not Found");
             }
-            return new ResponseInfo(SysHttpStatus.SUCCESS.isSuccess(), body, SysHttpStatus.SUCCESS.getMsg());
+            return new ResponseInfo<>(SysHttpStatus.SUCCESS.isSuccess(), body, SysHttpStatus.SUCCESS.getMsg());
         }else{
             return body;
         }
