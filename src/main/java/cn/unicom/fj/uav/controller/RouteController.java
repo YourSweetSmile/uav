@@ -1,8 +1,7 @@
 package cn.unicom.fj.uav.controller;
 
-import cn.unicom.fj.uav.dao.JSONResult;
-import cn.unicom.fj.uav.dao.helper.RouteHelperMapper;
 import cn.unicom.fj.uav.model.helper.RouteHelper;
+import cn.unicom.fj.uav.service.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,14 +14,13 @@ import java.util.List;
 
 public class RouteController {
     @Autowired
-    private RouteHelperMapper routeHelperMapper;
+    private RouteService routeService;
 
     //查询全部数据
     @RequestMapping(value="list")
-    public JSONResult getAllRoute(@RequestBody RouteHelper routeHelper){
-        List<RouteHelper> list=routeHelperMapper.getAllRoute( routeHelper);
+    public List<RouteHelper> getAllRoute(@RequestBody RouteHelper routeHelper){
 
-        return  new JSONResult().ok(list);
+        return routeService.getAllRoute( routeHelper);
 
     }
 

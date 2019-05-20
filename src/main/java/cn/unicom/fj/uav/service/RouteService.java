@@ -15,7 +15,7 @@ public class RouteService {
     @Autowired
     private RouteHelperMapper routeHelperMapper;
 
-    public List<RouteHelper> selectRoute(RouteHelper routeHelper){
+    public List<RouteHelper> getAllRoute(RouteHelper routeHelper){
         return routeHelperMapper.getAllRoute(routeHelper);
     }
 }
