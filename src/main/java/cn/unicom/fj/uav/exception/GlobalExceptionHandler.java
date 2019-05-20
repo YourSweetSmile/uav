@@ -51,13 +51,12 @@ public class GlobalExceptionHandler implements ResponseBodyAdvice<Object> {
         if(!(body instanceof ResponseInfo)){
 
 //            System.out.println(body.getClass().getName());
-//
-//            if(body instanceof LinkedHashMap){
-//                Object code = ((LinkedHashMap)body).get("status");
-//                if(null != code && ((Integer)code) == HttpStatus.NOT_FOUND.value()){
-//                    return new ResponseInfo(SysHttpStatus.ERROR.isSuccess(), "URL Not Found");
-//                }
-//            }
+            if(body instanceof LinkedHashMap){
+                Object code = ((LinkedHashMap)body).get("status");
+                if(null != code && ((Integer)code) == HttpStatus.NOT_FOUND.value()){
+                    return new ResponseInfo(SysHttpStatus.ERROR.isSuccess(), "URL Not Found");
+                }
+            }
 
             return new ResponseInfo<>(SysHttpStatus.SUCCESS.isSuccess(), body, SysHttpStatus.SUCCESS.getMsg());
         }else{
