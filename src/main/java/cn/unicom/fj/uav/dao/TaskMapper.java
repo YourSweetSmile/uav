@@ -2,8 +2,14 @@ package cn.unicom.fj.uav.dao;
 
 import cn.unicom.fj.uav.model.Task;
 import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.mapping.FetchType;
 import org.apache.ibatis.type.JdbcType;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+@Repository
+@Mapper
 public interface TaskMapper {
     @Delete({
         "delete from ent_task",
@@ -66,4 +72,5 @@ public interface TaskMapper {
         "where id = #{id,jdbcType=SMALLINT}"
     })
     int updateByPrimaryKey(Task record);
+
 }
