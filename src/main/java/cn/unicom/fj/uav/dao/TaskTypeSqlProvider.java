@@ -1,11 +1,11 @@
 package cn.unicom.fj.uav.dao;
 
-import cn.unicom.fj.uav.model.DeviceType;
+import cn.unicom.fj.uav.model.TaskType;
 import org.apache.ibatis.jdbc.SQL;
 
-public class DeviceTypeSqlProvider {
+public class TaskTypeSqlProvider {
 
-    public String insertSelective(DeviceType record) {
+    public String insertSelective(TaskType record) {
         SQL sql = new SQL();
         sql.INSERT_INTO("ent_task_type");
         
@@ -20,7 +20,7 @@ public class DeviceTypeSqlProvider {
         return sql.toString();
     }
 
-    public String updateByPrimaryKeySelective(DeviceType record) {
+    public String updateByPrimaryKeySelective(TaskType record) {
         SQL sql = new SQL();
         sql.UPDATE("ent_task_type");
         

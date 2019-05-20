@@ -84,7 +84,7 @@
             <property name="useActualColumnNames" value="false" />
         </table>
 
-        <table tableName="ent_task_type" domainObjectName="DeviceType"
+        <table tableName="ent_task_type" domainObjectName="TaskType"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"

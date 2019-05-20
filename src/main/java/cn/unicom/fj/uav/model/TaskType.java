@@ -1,6 +1,6 @@
 package cn.unicom.fj.uav.model;
 
-public class DeviceType {
+public class TaskType {
     private Short id;
 
     private String typeName;
