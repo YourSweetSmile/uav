@@ -18,7 +18,7 @@ public class LocationSqlProvider {
         }
         
         if (record.getCountyId() != null) {
-            sql.VALUES("county_id", "#{countyId,jdbcType=SMALLINT}");
+            sql.VALUES("county_id", "#{countyId,jdbcType=VARCHAR}");
         }
         
         if (record.getLongitude() != null) {
@@ -41,7 +41,7 @@ public class LocationSqlProvider {
         }
         
         if (record.getCountyId() != null) {
-            sql.SET("county_id = #{countyId,jdbcType=SMALLINT}");
+            sql.SET("county_id = #{countyId,jdbcType=VARCHAR}");
         }
         
         if (record.getLongitude() != null) {

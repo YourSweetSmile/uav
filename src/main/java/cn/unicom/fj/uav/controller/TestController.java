@@ -48,6 +48,7 @@ public class TestController {
                                     @RequestParam("pageSize") Integer pageSize,
                                     @RequestBody DeviceHelper deviceHelper){
 
-        return deviceService.getScopedDevice(pageNo, pageSize, deviceHelper);
+        throw new SysRuntimeExeption("1111");
+//        return deviceService.getScopedDevice(pageNo, pageSize, deviceHelper);
     }
 }

@@ -7,7 +7,7 @@ public class Location {
 
     private String locationName;
 
-    private Short countyId;
+    private String countyId;
 
     private BigDecimal longitude;
 
@@ -29,12 +29,12 @@ public class Location {
         this.locationName = locationName == null ? null : locationName.trim();
     }
 
-    public Short getCountyId() {
+    public String getCountyId() {
         return countyId;
     }
 
-    public void setCountyId(Short countyId) {
-        this.countyId = countyId;
+    public void setCountyId(String countyId) {
+        this.countyId = countyId == null ? null : countyId.trim();
     }
 
     public BigDecimal getLongitude() {

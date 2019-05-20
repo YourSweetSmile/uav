@@ -18,6 +18,8 @@ import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.LinkedHashMap;
+
 /**
  * 对返回参数的统一处理
  *
@@ -48,13 +50,15 @@ public class GlobalExceptionHandler implements ResponseBodyAdvice<Object> {
 
         if(!(body instanceof ResponseInfo)){
 
-//            JSONObject jsonStu = (JSONObject)JSONObject.toJSON(body);
+//            System.out.println(body.getClass().getName());
 //
-//            Object code = jsonStu.get("status");
-//            if(null != code && ((Integer)code) == HttpStatus.NOT_FOUND.value()){
-//
-//                return new ResponseInfo(SysHttpStatus.ERROR.isSuccess(), "URL Not Found");
+//            if(body instanceof LinkedHashMap){
+//                Object code = ((LinkedHashMap)body).get("status");
+//                if(null != code && ((Integer)code) == HttpStatus.NOT_FOUND.value()){
+//                    return new ResponseInfo(SysHttpStatus.ERROR.isSuccess(), "URL Not Found");
+//                }
 //            }
+
             return new ResponseInfo<>(SysHttpStatus.SUCCESS.isSuccess(), body, SysHttpStatus.SUCCESS.getMsg());
         }else{
             return body;

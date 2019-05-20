@@ -16,7 +16,7 @@ public interface LocationMapper {
         "county_id, longitude, ",
         "latitude)",
         "values (#{id,jdbcType=SMALLINT}, #{locationName,jdbcType=VARCHAR}, ",
-        "#{countyId,jdbcType=SMALLINT}, #{longitude,jdbcType=DECIMAL}, ",
+        "#{countyId,jdbcType=VARCHAR}, #{longitude,jdbcType=DECIMAL}, ",
         "#{latitude,jdbcType=DECIMAL})"
     })
     int insert(Location record);
@@ -33,7 +33,7 @@ public interface LocationMapper {
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.SMALLINT, id=true),
         @Result(column="location_name", property="locationName", jdbcType=JdbcType.VARCHAR),
-        @Result(column="county_id", property="countyId", jdbcType=JdbcType.SMALLINT),
+        @Result(column="county_id", property="countyId", jdbcType=JdbcType.VARCHAR),
         @Result(column="longitude", property="longitude", jdbcType=JdbcType.DECIMAL),
         @Result(column="latitude", property="latitude", jdbcType=JdbcType.DECIMAL)
     })
@@ -45,7 +45,7 @@ public interface LocationMapper {
     @Update({
         "update ent_location",
         "set location_name = #{locationName,jdbcType=VARCHAR},",
-          "county_id = #{countyId,jdbcType=SMALLINT},",
+          "county_id = #{countyId,jdbcType=VARCHAR},",
           "longitude = #{longitude,jdbcType=DECIMAL},",
           "latitude = #{latitude,jdbcType=DECIMAL}",
         "where id = #{id,jdbcType=SMALLINT}"
