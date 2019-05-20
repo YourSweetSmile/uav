@@ -26,7 +26,7 @@ public interface DeviceHelperMapper extends DeviceMapper {
     @Results({
             @Result(column="id", property="id", jdbcType= JdbcType.SMALLINT, id=true),
             @Result(column="device_type", property="deviceType", jdbcType=JdbcType.VARCHAR),
-//            @Result(column="task_type_id", property="taskTypeId", jdbcType=JdbcType.SMALLINT),
+            @Result(column="task_type_id", property="taskTypeId", jdbcType=JdbcType.SMALLINT),
             @Result(column="device_status", property="deviceStatus", jdbcType=JdbcType.VARCHAR),
             @Result(column="device_num", property="deviceNum", jdbcType=JdbcType.VARCHAR),
             @Result(column="device_name", property="deviceName", jdbcType=JdbcType.VARCHAR),
@@ -48,7 +48,7 @@ public interface DeviceHelperMapper extends DeviceMapper {
             @Result(column="base_loss", property="baseLoss", jdbcType=JdbcType.DECIMAL),
             @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
             @Result(column="device_desc", property="deviceDesc", jdbcType=JdbcType.LONGVARCHAR),
-            @Result(column="task_type_id",property="taskType", javaType = cn.unicom.fj.uav.model.TaskType.class,
+            @Result(column="task_type_id",property="taskType",
                     one=@One(select="cn.unicom.fj.uav.dao.TaskTypeMapper.selectByPrimaryKey",
                             fetchType= FetchType.EAGER))
     })
