@@ -25,6 +25,11 @@ public class DeviceService {
         return deviceHelperMapper.selectByHelper(deviceHelper);
     }
 
+    /**
+     * 根据条件查询列表并分页
+     * @param deviceHelper
+     * @return
+     */
     public PageInfo getScopedDevice(Integer pageNo, Integer pageSize, DeviceHelper deviceHelper){
 
         PageHelper.startPage(pageNo, pageSize);
