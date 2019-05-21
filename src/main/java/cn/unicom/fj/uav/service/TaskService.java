@@ -34,4 +34,18 @@ public class TaskService {
     public int insert(Task record){
         return taskMapper.insert(record);
     }
+
+    /**
+     * 修改
+     */
+    public int updateByPrimaryKey(Task record){
+        return taskMapper.updateByPrimaryKey(record);
+    }
+
+    /**
+     * 根据id查询
+     */
+    public Task selectByPrimaryKey(Short id){
+        return taskMapper.selectByPrimaryKey(id);
+    }
 }

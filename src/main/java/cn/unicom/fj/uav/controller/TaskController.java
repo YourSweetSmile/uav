@@ -18,6 +18,12 @@ import java.util.Map;
 public class TaskController {
     @Autowired
     private TaskService taskService;
+
+    /**
+     * 查询全部数据
+     * @param taskHelper
+     * @return
+     */
     @RequestMapping(value="list")
     public List<TaskHelper> getAllTaskHelper(@RequestBody TaskHelper taskHelper){
         return taskService.getAllTaskHelper(taskHelper);
@@ -39,5 +45,21 @@ public class TaskController {
     @RequestMapping(value="ins")
     public int insert(@RequestBody Task record){
         return taskService.insert(record);
+    }
+
+    /**
+     * 修改
+     */
+    @RequestMapping(value="upd")
+    public int updateByPrimaryKey(@RequestBody Task record){
+        return taskService.updateByPrimaryKey(record);
+    }
+
+    /**
+     * 根据id查询
+     */
+    @RequestMapping(value="id")
+    public Task selectByPrimaryKey(Short id){
+        return taskService.selectByPrimaryKey(id);
     }
 }
