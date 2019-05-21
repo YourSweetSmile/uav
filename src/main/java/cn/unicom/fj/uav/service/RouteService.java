@@ -14,8 +14,15 @@ public class RouteService {
 
     @Autowired
     private RouteHelperMapper routeHelperMapper;
+    @Autowired
+    private RouteMapper routeMapper;
 
+    //查询全部数据
     public List<RouteHelper> getAllRoute(RouteHelper routeHelper){
         return routeHelperMapper.getAllRoute(routeHelper);
+    }
+    //添加数据
+    public int insert(Route record){
+        return routeMapper.insert(record);
     }
 }
