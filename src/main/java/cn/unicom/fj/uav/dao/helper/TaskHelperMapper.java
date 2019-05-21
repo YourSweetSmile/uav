@@ -18,7 +18,12 @@ public interface TaskHelperMapper extends TaskMapper{
      * 查询全部数据
      * @return
      */
-    @Select("select * from ent_task")
+//    @Select({"select " +
+//            "id,task_type_id,task_start_time, " +
+//            "rode_id, task_status, is_delete " +
+//            "from ent_task"
+//    })
+    @Select({"select * from ent_task"})
     @Results({
             @Result(column="id", property="id", jdbcType= JdbcType.SMALLINT, id=true),
             @Result(column="task_name", property="taskName", jdbcType=JdbcType.VARCHAR),

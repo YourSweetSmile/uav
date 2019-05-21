@@ -1,5 +1,6 @@
 package cn.unicom.fj.uav.controller;
 
+import cn.unicom.fj.uav.dao.TaskMapper;
 import cn.unicom.fj.uav.model.Task;
 import cn.unicom.fj.uav.model.helper.TaskHelper;
 import cn.unicom.fj.uav.service.TaskService;
@@ -20,5 +21,15 @@ public class TaskController {
     @RequestMapping(value="list")
     public List<TaskHelper> getAllTaskHelper(@RequestBody TaskHelper taskHelper){
         return taskService.getAllTaskHelper(taskHelper);
+        //List<TaskHelper> list=taskService.getAllTaskHelper(taskHelper);
+        //return list;
+    }
+
+    /**
+     * 按ID删除
+     */
+    @RequestMapping(value="del")
+    public int deleteByPrimaryKey(Short id){
+        return taskService.deleteByPrimaryKey(id);
     }
 }

@@ -11,9 +11,20 @@ import java.util.List;
 
 @Service
 public class TaskService {
+    /**
+     * 查询全部
+     */
     @Autowired
     private TaskHelperMapper taskHelperMapper;
     public List<TaskHelper> getAllTaskHelper(TaskHelper taskHelper){
         return taskHelperMapper.getAllTaskHelper(taskHelper);
+    }
+    /**
+     * 按ID删除
+     */
+    @Autowired
+    private  TaskMapper taskMapper;
+    public int deleteByPrimaryKey(Short id){
+        return taskMapper.deleteByPrimaryKey(id);
     }
 }
