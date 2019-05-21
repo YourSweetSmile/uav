@@ -163,6 +163,7 @@
                enableSelectByExample="false"
                selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="false" />
+            <!--<columnOverride column="user_telephone" jdbcType="CHAR" javaType="userTelephone"/>-->
         </table>
 
 
