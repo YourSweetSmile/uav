@@ -11,8 +11,8 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://10.19.0.50:3306/uavms?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false
-      username: yin
+      url: jdbc:mysql://106.13.113.35:3306/uavms?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false
+      username: uav-admin
       password: 123456
       ###################以下为druid增加的配置###########################
       type: com.alibaba.druid.pool.DruidDataSource
