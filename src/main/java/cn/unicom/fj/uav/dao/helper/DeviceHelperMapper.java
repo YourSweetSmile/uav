@@ -13,7 +13,6 @@ import java.util.List;
 
 public interface DeviceHelperMapper extends DeviceMapper {
 
-
     @Select({
             "<script>",
             "select",

@@ -13,18 +13,20 @@ import org.apache.ibatis.type.JdbcType;
 
 public interface UserMapper {
     @Delete({
-        "delete from sys_user",
-        "where user_id = #{userId,jdbcType=BIGINT}"
+        "delete from sys_uav_user",
+        "where user_id = #{userId,jdbcType=SMALLINT}"
     })
-    int deleteByPrimaryKey(Long userId);
+    int deleteByPrimaryKey(Short userId);
 
     @Insert({
-        "insert into sys_user (user_id, user_no, ",
-        "user_name, user_pwd, ",
-        "role_id, create_time)",
-        "values (#{userId,jdbcType=BIGINT}, #{userNo,jdbcType=VARCHAR}, ",
-        "#{userName,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR}, ",
-        "#{roleId,jdbcType=BIGINT}, #{createTime,jdbcType=VARCHAR})"
+        "insert into sys_uav_user (user_id, user_name, ",
+        "user_date, user_privileges, ",
+        "user_sex, user_company, ",
+        "user_telephone)",
+        "values (#{userId,jdbcType=SMALLINT}, #{userName,jdbcType=VARCHAR}, ",
+        "#{userDate,jdbcType=TIMESTAMP}, #{userPrivileges,jdbcType=VARCHAR}, ",
+        "#{userSex,jdbcType=VARCHAR}, #{userCompany,jdbcType=VARCHAR}, ",
+        "#{userTelephone,jdbcType=CHAR})"
     })
     int insert(User record);
 
@@ -33,31 +35,33 @@ public interface UserMapper {
 
     @Select({
         "select",
-        "user_id, user_no, user_name, user_pwd, role_id, create_time",
-        "from sys_user",
-        "where user_id = #{userId,jdbcType=BIGINT}"
+        "user_id, user_name, user_date, user_privileges, user_sex, user_company, user_telephone",
+        "from sys_uav_user",
+        "where user_id = #{userId,jdbcType=SMALLINT}"
     })
     @Results({
-        @Result(column="user_id", property="userId", jdbcType=JdbcType.BIGINT, id=true),
-        @Result(column="user_no", property="userNo", jdbcType=JdbcType.VARCHAR),
+        @Result(column="user_id", property="userId", jdbcType=JdbcType.SMALLINT, id=true),
         @Result(column="user_name", property="userName", jdbcType=JdbcType.VARCHAR),
-        @Result(column="user_pwd", property="userPwd", jdbcType=JdbcType.VARCHAR),
-        @Result(column="role_id", property="roleId", jdbcType=JdbcType.BIGINT),
-        @Result(column="create_time", property="createTime", jdbcType=JdbcType.VARCHAR)
+        @Result(column="user_date", property="userDate", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="user_privileges", property="userPrivileges", jdbcType=JdbcType.VARCHAR),
+        @Result(column="user_sex", property="userSex", jdbcType=JdbcType.VARCHAR),
+        @Result(column="user_company", property="userCompany", jdbcType=JdbcType.VARCHAR),
+        @Result(column="user_telephone", property="userTelephone", jdbcType=JdbcType.CHAR)
     })
-    User selectByPrimaryKey(Long userId);
+    User selectByPrimaryKey(Short userId);
 
     @UpdateProvider(type=UserSqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(User record);
 
     @Update({
-        "update sys_user",
-        "set user_no = #{userNo,jdbcType=VARCHAR},",
-          "user_name = #{userName,jdbcType=VARCHAR},",
-          "user_pwd = #{userPwd,jdbcType=VARCHAR},",
-          "role_id = #{roleId,jdbcType=BIGINT},",
-          "create_time = #{createTime,jdbcType=VARCHAR}",
-        "where user_id = #{userId,jdbcType=BIGINT}"
+        "update sys_uav_user",
+        "set user_name = #{userName,jdbcType=VARCHAR},",
+          "user_date = #{userDate,jdbcType=TIMESTAMP},",
+          "user_privileges = #{userPrivileges,jdbcType=VARCHAR},",
+          "user_sex = #{userSex,jdbcType=VARCHAR},",
+          "user_company = #{userCompany,jdbcType=VARCHAR},",
+          "user_telephone = #{userTelephone,jdbcType=CHAR}",
+        "where user_id = #{userId,jdbcType=SMALLINT}"
     })
     int updateByPrimaryKey(User record);
 }

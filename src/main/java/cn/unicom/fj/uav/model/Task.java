@@ -102,4 +102,6 @@ public class Task {
     public void setIsDelete(String isDelete) {
         this.isDelete = isDelete == null ? null : isDelete.trim();
     }
+
+
 }

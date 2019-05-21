@@ -102,4 +102,6 @@ public class Route {
     public void setTaskTypeId(Short taskTypeId) {
         this.taskTypeId = taskTypeId;
     }
+
+
 }

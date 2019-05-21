@@ -1,32 +1,30 @@
 package cn.unicom.fj.uav.model;
 
-public class User {
-    private Long userId;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-    private String userNo;
+import java.util.Date;
+
+public class User {
+    private Short userId;
 
     private String userName;
+    @JsonFormat(pattern = "yyyy-MM-dd",locale = "zh",timezone = "")
+    private Date userDate;
 
-    private String userPwd;
+    private String userPrivileges;
 
-    private Long roleId;
+    private String userSex;
 
-    private String createTime;
+    private String userCompany;
 
-    public Long getUserId() {
+    private String userTelephone;
+
+    public Short getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(Short userId) {
         this.userId = userId;
-    }
-
-    public String getUserNo() {
-        return userNo;
-    }
-
-    public void setUserNo(String userNo) {
-        this.userNo = userNo == null ? null : userNo.trim();
     }
 
     public String getUserName() {
@@ -37,27 +35,44 @@ public class User {
         this.userName = userName == null ? null : userName.trim();
     }
 
-    public String getUserPwd() {
-        return userPwd;
+    public Date getUserDate() {
+        return userDate;
     }
 
-    public void setUserPwd(String userPwd) {
-        this.userPwd = userPwd == null ? null : userPwd.trim();
+    public void setUserDate(Date userDate) {
+        this.userDate = userDate;
     }
 
-    public Long getRoleId() {
-        return roleId;
+    public String getUserPrivileges() {
+        return userPrivileges;
     }
 
-    public void setRoleId(Long roleId) {
-        this.roleId = roleId;
+    public void setUserPrivileges(String userPrivileges) {
+        this.userPrivileges = userPrivileges == null ? null : userPrivileges.trim();
     }
 
-    public String getCreateTime() {
-        return createTime;
+    public String getUserSex() {
+        return userSex;
     }
 
-    public void setCreateTime(String createTime) {
-        this.createTime = createTime == null ? null : createTime.trim();
+    public void setUserSex(String userSex) {
+        this.userSex = userSex == null ? null : userSex.trim();
     }
+
+    public String getUserCompany() {
+        return userCompany;
+    }
+
+    public void setUserCompany(String userCompany) {
+        this.userCompany = userCompany == null ? null : userCompany.trim();
+    }
+
+    public String getUserTelephone() {
+        return userTelephone;
+    }
+
+    public void setUserTelephone(String userTelephone) {
+        this.userTelephone = userTelephone == null ? null : userTelephone.trim();
+    }
+
 }
