@@ -4,6 +4,7 @@ import cn.unicom.fj.uav.dao.RouteMapper;
 import cn.unicom.fj.uav.model.Route;
 import cn.unicom.fj.uav.model.helper.RouteHelper;
 import cn.unicom.fj.uav.service.RouteService;
+import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,11 +32,12 @@ public class RouteController {
             @RequestParam(value = "limit",defaultValue = "20")Integer limit,
             @RequestBody RouteHelper routeHelper){
 
+        PageHelper.startPage(page,limit);
+
         List<RouteHelper> list=routeService.getAllRoute( routeHelper);
 
         PageInfo<RouteHelper> pageInfo=new PageInfo<>(list);
         return pageInfo;
-
     }
     //添加
     @RequestMapping(value="addlist")

@@ -4,6 +4,8 @@ import cn.unicom.fj.uav.model.Location;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 
+import java.util.List;
+
 public interface LocationMapper {
     @Delete({
         "delete from ent_location",
@@ -38,6 +40,21 @@ public interface LocationMapper {
         @Result(column="latitude", property="latitude", jdbcType=JdbcType.DECIMAL)
     })
     Location selectByPrimaryKey(Short id);
+
+    //查找所有城市
+    @Select({
+            "select",
+            "id, location_name, county_id, longitude, latitude",
+            "from ent_location"
+    })
+    @Results({
+            @Result(column="id", property="id", jdbcType=JdbcType.SMALLINT, id=true),
+            @Result(column="location_name", property="locationName", jdbcType=JdbcType.VARCHAR),
+            @Result(column="county_id", property="countyId", jdbcType=JdbcType.VARCHAR),
+            @Result(column="longitude", property="longitude", jdbcType=JdbcType.DECIMAL),
+            @Result(column="latitude", property="latitude", jdbcType=JdbcType.DECIMAL)
+    })
+    List<Location> selectAll();
 
     @UpdateProvider(type=LocationSqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(Location record);
