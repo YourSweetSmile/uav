@@ -4,6 +4,7 @@ import cn.unicom.fj.uav.dao.TaskMapper;
 import cn.unicom.fj.uav.dao.helper.TaskHelperMapper;
 import cn.unicom.fj.uav.model.Task;
 import cn.unicom.fj.uav.model.helper.TaskHelper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +17,11 @@ public class TaskService {
      */
     @Autowired
     private TaskHelperMapper taskHelperMapper;
-    public List<TaskHelper> getAllTaskHelper(TaskHelper taskHelper){
-        return taskHelperMapper.getAllTaskHelper(taskHelper);
+    public List<TaskHelper> getAllTaskHelper(String task_status,
+                                             String task_start_time,
+                                             String task_type_id,
+                                             Integer rode_id){
+        return taskHelperMapper.getAllTaskHelper(task_status,task_start_time,task_type_id,rode_id);
     }
     /**
      * 按ID删除

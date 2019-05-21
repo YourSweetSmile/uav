@@ -23,7 +23,22 @@ public interface TaskHelperMapper extends TaskMapper{
 //            "rode_id, task_status, is_delete " +
 //            "from ent_task"
 //    })
-    @Select({"select * from ent_task"})
+   // @Select({"select * from ent_task"})
+    @Select("<script>" +
+            "select * from ent_task where 1=1 and is_delete=0" +
+            "<if test='task_status!=null and task_status!=\"\"'>" +
+            "and task_status like '%${task_status}%'" +
+            "</if>" +
+            "<if test='task_start_time!=null and task_start_time!=\"\"'>" +
+            "and task_start_time = '#{task_start_time}" +
+            "</if>" +
+            "<if test='task_type_id!=null and task_type_id!=\"\"'>" +
+            "and task_type_id = '#{task_type_id}" +
+            "</if>" +
+            "<if test='rode_id!=null and rode_id!=\"\"'>" +
+            "and rode_id = '#{rode_id}%" +
+            "</if>" +
+            "</script>")
     @Results({
             @Result(column="id", property="id", jdbcType= JdbcType.SMALLINT, id=true),
             @Result(column="task_name", property="taskName", jdbcType=JdbcType.VARCHAR),
@@ -39,5 +54,8 @@ public interface TaskHelperMapper extends TaskMapper{
                     one=@One(select="cn.unicom.fj.uav.dao.TaskTypeMapper.selectByPrimaryKey",
                             fetchType= FetchType.EAGER))
     })
-    List<TaskHelper> getAllTaskHelper(TaskHelper taskHelper);
+    List<TaskHelper> getAllTaskHelper(@Param("task_status") String task_status,
+                                      @Param("task_start_time") String task_start_time,
+                                      @Param("task_type_id") String task_type_id,
+                                      @Param("rode_id") Integer rode_id);
 }
