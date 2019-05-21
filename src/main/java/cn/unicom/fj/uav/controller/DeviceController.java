@@ -37,4 +37,14 @@ public class DeviceController {
 
         return deviceService.getScopedDevice(pageNo, pageSize, deviceHelper);
     }
+
+    /**
+     * 添加设备
+     * @param device
+     */
+    @PostMapping("/add")
+    public void addDevice(@RequestBody Device device){
+
+        deviceService.addDevice(device);
+    }
 }

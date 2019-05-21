@@ -2,6 +2,9 @@ spring:
   profiles:
     active: dev
   jackson:
+    #不响应value=null的字段
+    default-property-inclusion: non_null
+    #日期响应格式化
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
     serialization:
