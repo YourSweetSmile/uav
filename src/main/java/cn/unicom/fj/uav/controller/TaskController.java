@@ -32,4 +32,12 @@ public class TaskController {
     public int deleteByPrimaryKey(Short id){
         return taskService.deleteByPrimaryKey(id);
     }
+
+    /**
+     * 添加
+     */
+    @RequestMapping(value="ins")
+    public int insert(@RequestBody Task record){
+        return taskService.insert(record);
+    }
 }

@@ -27,4 +27,11 @@ public class TaskService {
     public int deleteByPrimaryKey(Short id){
         return taskMapper.deleteByPrimaryKey(id);
     }
+
+    /**
+     * 添加
+     */
+    public int insert(Task record){
+        return taskMapper.insert(record);
+    }
 }
