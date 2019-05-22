@@ -1,6 +1,8 @@
 package cn.unicom.fj.uav.service;
 
 import cn.unicom.fj.uav.dao.helper.DeviceHelperMapper;
+import cn.unicom.fj.uav.exception.SysRuntimeExeption;
+import cn.unicom.fj.uav.model.Device;
 import cn.unicom.fj.uav.model.helper.DeviceHelper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -37,5 +39,18 @@ public class DeviceService {
 
         return new PageInfo<>(list);
 
+    }
+
+    /**
+     * 增加一条记录
+     * @param device
+     */
+    public void addDevice(Device device){
+
+        if(null == device || null != device.getId()){
+
+            throw new SysRuntimeExeption("设备信息必须传入且id必须为空");
+        }
+        deviceHelperMapper.insert(device);
     }
 }
