@@ -25,4 +25,18 @@ public class RouteService {
     public int insert(Route record){
         return routeMapper.insert(record);
     }
+    //修改路线状态
+    public int updateStatus(Route record){
+
+        Route routeDb=routeMapper.selectByPrimaryKey(record.getId());
+
+//        System.out.println(routeDb.getRouteStatus());
+        if ("t".equals(routeDb.getRouteStatus())){
+            routeDb.setRouteStatus("f");
+        }else{
+            routeDb.setRouteStatus("t");
+        }
+//        System.out.println(record);
+        return routeMapper.updateByPrimaryKey(routeDb);
+    }
 }

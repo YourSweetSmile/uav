@@ -46,5 +46,12 @@ public class RouteController {
 
     }
 
+    //修改路线状态
+    @RequestMapping(value="setstaus")
+    public void updateStatus(@RequestBody Route record){
+        routeService.updateStatus(record);
+    }
+
+
 
 }

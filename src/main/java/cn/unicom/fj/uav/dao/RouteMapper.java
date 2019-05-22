@@ -66,4 +66,12 @@ public interface RouteMapper {
         "where id = #{id,jdbcType=SMALLINT}"
     })
     int updateByPrimaryKey(Route record);
+
+    //修改路线状态
+    @Update({
+            "update ent_route",
+            "set route_status = #{routeStatus,jdbcType=CHAR}",
+            "where id = #{id,jdbcType=SMALLINT}"
+    })
+    int updateStatus(Route record);
 }
