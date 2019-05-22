@@ -22,13 +22,15 @@ public interface TaskHelperMapper extends TaskMapper{
     @Select("<script>" +
             "select t.id tid,t.is_delete tis_delete,t.* from ent_task t left join ent_route r on t.rode_id=r.id where t.is_delete=0" +
             "<if test='taskStatus!=null and taskStatus!=\"\"'>" +
-            "and t.task_status like '%${taskStatus}%'" +
+                "and t.task_status like '%${taskStatus}%'" +
             "</if>" +
             "<if test='taskStartTime!=null'>" +
-            "and t.task_start_time like '%${taskStartTime}%'" +
+                "and t.task_start_time = #{taskStartTime}" +
             "</if>" +
-            "<if test='taskType!=null and taskType!=\"\"'>" +
-            "and t.task_type_id = #{taskType}" +
+            "<if test='taskType!=null'>" +
+                "<if test='taskType.id!=null and taskType.id!=\"\"'>" +
+                "and t.task_type_id = #{taskType.id}" +
+                "</if>" +
             "</if>" +
             "<if test='route!=null'>" +
                 "<if test='route.routeName!=null and route.routeName!=\"\"'>" +
