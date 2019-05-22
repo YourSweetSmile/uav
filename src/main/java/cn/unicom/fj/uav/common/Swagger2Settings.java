@@ -1,7 +1,6 @@
 package cn.unicom.fj.uav.common;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.NotNull;

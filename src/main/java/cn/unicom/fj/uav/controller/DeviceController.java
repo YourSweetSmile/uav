@@ -5,10 +5,7 @@ import cn.unicom.fj.uav.model.helper.DeviceHelper;
 import cn.unicom.fj.uav.service.DeviceService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 /**
@@ -31,7 +28,8 @@ public class DeviceController {
      */
     @PostMapping("/list")
     public PageInfo getList(
-            Integer pageNo, Integer pageSize,
+            @RequestParam("page") Integer pageNo,
+            @RequestParam("limit") Integer pageSize,
             @RequestBody DeviceHelper deviceHelper) {
 
         return deviceService.getScopedDevice(pageNo, pageSize, deviceHelper);

@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import springfox.documentation.swagger.web.UiConfiguration;
 
 import java.util.LinkedHashMap;
 
