@@ -1,7 +1,10 @@
 package cn.unicom.fj.uav.config;
 
+import cn.unicom.fj.uav.common.Swagger2Settings;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -14,9 +17,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class Swagger2Config {
 
+    @Autowired
+    private Swagger2Settings swagger2Settings;
+
     @Bean
     public Docket buildDocket() {
         return new Docket(DocumentationType.SWAGGER_2)
+                .enable(swagger2Settings.isShow())
                 //调用下面 apiInfo()方法
                 .apiInfo(apiInfo())
                 .select()
@@ -31,7 +38,7 @@ public class Swagger2Config {
         return new ApiInfoBuilder()
                 .title("springboot 结合 swagger2 构建 Restful API")
                 .description("无人机数据分析系统")
-                .termsOfServiceUrl("localhost:8080")
+                .termsOfServiceUrl("localhost:8088")
                 .version("0.0.1")
                 .build();
     }
