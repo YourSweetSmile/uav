@@ -55,12 +55,15 @@ mybatis:
 ---
 spring:
   profiles: dev
+  mvc:
+    static-path-pattern: /image/**
+    resources:
+      static-locations: file:/Users/yinjunwu/dev-work/file-temp/uav/
 server:
   port: 8088
 app:
   swagger2:
     show: true
-  file-floder: /Users/yinjunwu/dev-work/file-temp/uav/
   security:
     protectUrl: /api/**
     permitUrl: /api/auth/login,/api/auth/register,/api/hello/**
@@ -74,12 +77,15 @@ app:
 ---
 spring:
   profiles: test
+  mvc:
+    static-path-pattern: /image/**
+    resources:
+      static-locations: file:/root/myfile/file-temp/
 server:
   port: 10010
 app:
   swagger2:
     show: true
-  file-floder: /root/myfile/file-temp/
   security:
     protectUrl: /api/**
     permitUrl: /api/auth/login,/api/auth/register
@@ -93,12 +99,15 @@ app:
 ---
 spring:
   profiles: prd
+  mvc:
+    static-path-pattern: /image/**
+    resources:
+      static-locations: file:/root/myfile/file-temp/
 server:
   port: 80
 app:
   swagger2:
     isShow: false
-  file-floder: /root/myfile/file-temp/
   security:
     protectUrl: /api/**
     permitUrl: /api/auth/login,/api/auth/register
