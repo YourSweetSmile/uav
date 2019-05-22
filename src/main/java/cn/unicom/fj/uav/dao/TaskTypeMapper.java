@@ -34,6 +34,7 @@ public interface TaskTypeMapper {
     })
     TaskType selectByPrimaryKey(Short id);
 
+    //获取所有任务类型
     @Select({
             "select",
             "id, type_name",
