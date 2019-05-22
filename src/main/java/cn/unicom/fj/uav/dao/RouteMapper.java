@@ -46,17 +46,7 @@ public interface RouteMapper {
         @Result(column="route_end", property="routeEnd", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="is_delete", property="isDelete", jdbcType=JdbcType.CHAR),
         @Result(column="route_status", property="routeStatus", jdbcType=JdbcType.CHAR),
-        @Result(column="task_type_id", property="taskTypeId", jdbcType=JdbcType.SMALLINT),
-        @Result(column = "route_leave",
-                property = "leave",
-                one = @One(select = "cn.unicom.fj.uav.dao.LocationMapper.selectByPrimaryKey",
-                        fetchType = FetchType.EAGER)
-        ),
-        @Result(column = "route_arrival",
-                property = "arrival",
-                one = @One(select = "cn.unicom.fj.uav.dao.LocationMapper.selectByPrimaryKey",
-                        fetchType = FetchType.EAGER)
-        )
+        @Result(column="task_type_id", property="taskTypeId", jdbcType=JdbcType.SMALLINT)
     })
     Route selectByPrimaryKey(Short id);
 
