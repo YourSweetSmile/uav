@@ -60,6 +60,7 @@ server:
 app:
   swagger2:
     show: true
+  file-floder: /Users/yinjunwu/dev-work/file-temp/uav/
   security:
     protectUrl: /api/**
     permitUrl: /api/auth/login,/api/auth/register,/api/hello/**
@@ -78,6 +79,7 @@ server:
 app:
   swagger2:
     show: true
+  file-floder: /root/myfile/file-temp/
   security:
     protectUrl: /api/**
     permitUrl: /api/auth/login,/api/auth/register
@@ -96,6 +98,7 @@ server:
 app:
   swagger2:
     isShow: false
+  file-floder: /root/myfile/file-temp/
   security:
     protectUrl: /api/**
     permitUrl: /api/auth/login,/api/auth/register
