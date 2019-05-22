@@ -43,16 +43,16 @@ public interface RouteHelperMapper extends RouteMapper {
                     one = @One(select = "cn.unicom.fj.uav.dao.TaskTypeMapper.selectByPrimaryKey",
                             fetchType = FetchType.EAGER)
             ),
-            @Result(column = "route_leave",
-                    property = "leave",
-                    one = @One(select = "cn.unicom.fj.uav.dao.LocationMapper.selectByPrimaryKey",
-                            fetchType = FetchType.EAGER)
-            ),
-            @Result(column = "route_arrival",
-                    property = "arrival",
-                    one = @One(select = "cn.unicom.fj.uav.dao.LocationMapper.selectByPrimaryKey",
-                            fetchType = FetchType.EAGER)
-            )
+        @Result(column = "route_leave",
+                property = "leave",
+                one = @One(select = "cn.unicom.fj.uav.dao.LocationMapper.selectByPrimaryKey",
+                        fetchType = FetchType.EAGER)
+        ),
+        @Result(column = "route_arrival",
+                property = "arrival",
+                one = @One(select = "cn.unicom.fj.uav.dao.LocationMapper.selectByPrimaryKey",
+                        fetchType = FetchType.EAGER)
+        )
     })
     List<RouteHelper> getAllRoute(RouteHelper routeHelper);
 

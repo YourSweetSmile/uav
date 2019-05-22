@@ -25,6 +25,12 @@ public class RouteService {
     public int insert(Route record){
         return routeMapper.insert(record);
     }
+
+    //修改数据
+    public int update(Route record){
+        return routeMapper.updateByPrimaryKey(record);
+    }
+
     //修改路线状态
     public int updateStatus(Route record){
 

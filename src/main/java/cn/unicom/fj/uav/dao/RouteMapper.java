@@ -2,6 +2,7 @@ package cn.unicom.fj.uav.dao;
 
 import cn.unicom.fj.uav.model.Route;
 import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.mapping.FetchType;
 import org.apache.ibatis.type.JdbcType;
 
 public interface RouteMapper {
@@ -45,7 +46,17 @@ public interface RouteMapper {
         @Result(column="route_end", property="routeEnd", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="is_delete", property="isDelete", jdbcType=JdbcType.CHAR),
         @Result(column="route_status", property="routeStatus", jdbcType=JdbcType.CHAR),
-        @Result(column="task_type_id", property="taskTypeId", jdbcType=JdbcType.SMALLINT)
+        @Result(column="task_type_id", property="taskTypeId", jdbcType=JdbcType.SMALLINT),
+        @Result(column = "route_leave",
+                property = "leave",
+                one = @One(select = "cn.unicom.fj.uav.dao.LocationMapper.selectByPrimaryKey",
+                        fetchType = FetchType.EAGER)
+        ),
+        @Result(column = "route_arrival",
+                property = "arrival",
+                one = @One(select = "cn.unicom.fj.uav.dao.LocationMapper.selectByPrimaryKey",
+                        fetchType = FetchType.EAGER)
+        )
     })
     Route selectByPrimaryKey(Short id);
 
