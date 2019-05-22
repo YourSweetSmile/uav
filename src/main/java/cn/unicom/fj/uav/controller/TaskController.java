@@ -1,6 +1,7 @@
 package cn.unicom.fj.uav.controller;
 
 import cn.unicom.fj.uav.dao.TaskMapper;
+import cn.unicom.fj.uav.model.Route;
 import cn.unicom.fj.uav.model.Task;
 import cn.unicom.fj.uav.model.helper.TaskHelper;
 import cn.unicom.fj.uav.service.TaskService;
@@ -31,16 +32,13 @@ public class TaskController {
 //        //List<TaskHelper> list=taskService.getAllTaskHelper(taskHelper);
 //        //return list;
 //    }
-    @GetMapping(value="list")
+    @PostMapping(value="list")
     public PageInfo<TaskHelper> getAllTaskHelper(
                              @RequestParam(value = "page",defaultValue = "1") Integer page,
                              @RequestParam(value = "limit",defaultValue = "20") Integer limit,
-                             @RequestParam(name="task_status",defaultValue="") String task_status,
-                             @RequestParam(name="task_start_time",defaultValue="") String task_start_time,
-                             @RequestParam(name="task_type_id",defaultValue="") String task_type_id,
-                             @RequestParam(name="rode_id",defaultValue="") Integer rode_id){
+                             @RequestBody TaskHelper taskHelper){
         PageHelper.startPage(page,limit);
-        List<TaskHelper> list=taskService.getAllTaskHelper(task_status,task_start_time,task_type_id,rode_id);
+        List<TaskHelper> list=taskService.getAllTaskHelper(taskHelper);
         PageInfo<TaskHelper> pageInfo=new PageInfo<>(list);
         return pageInfo;
 
