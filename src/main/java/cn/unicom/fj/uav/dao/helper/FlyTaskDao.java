@@ -19,7 +19,7 @@ public interface FlyTaskDao extends TaskMapper {
   @Results({
     @Result(column="id", property="id", jdbcType= JdbcType.SMALLINT, id=true),
     @Result(column="task_name", property="taskName", jdbcType=JdbcType.VARCHAR),
-//    @Result(column="task_type_id", property="taskTypeId", jdbcType=JdbcType.TINYINT),
+    @Result(column="task_type_id", property="taskTypeId", jdbcType=JdbcType.TINYINT),
     @Result(column="device_id", property="deviceId", jdbcType=JdbcType.SMALLINT),
     @Result(column="task_build_time", property="taskBuildTime", jdbcType=JdbcType.TIMESTAMP),
     @Result(column="task_start_time", property="taskStartTime", jdbcType=JdbcType.TIMESTAMP),
@@ -29,7 +29,10 @@ public interface FlyTaskDao extends TaskMapper {
     @Result(column="is_delete", property="isDelete", jdbcType=JdbcType.CHAR),
     @Result(column="task_type_id",property="taskType",
       one=@One(select="cn.unicom.fj.uav.dao.TaskTypeMapper.selectByPrimaryKey",
-        fetchType= FetchType.EAGER))
+        fetchType= FetchType.EAGER)),
+    @Result(column="rode_id", property="route", jdbcType=JdbcType.SMALLINT,
+       one=@One(select ="cn.unicom.fj.uav.dao.helper.RouteHelperMapper.getRouteById" ,fetchType= FetchType.EAGER))
+
   })
   List<FlyTask> getAllTask();
 
@@ -63,7 +66,7 @@ int updateFlyTask(@Param("id") Short id,
     " and device_id like '%${deviceId}%'"+
     "</if>"+
     "<if test='rodeId!=null and rodeId!=\"\"'>" +
-    " and rode_id like '%${rodeId}%'"+
+    " and rode_id = #{rodeId}"+
     "</if>"+
     "<if test='order!=null and order==\"+id\"'>" +
     " order by id asc"+
@@ -81,15 +84,13 @@ int updateFlyTask(@Param("id") Short id,
     @Result(column="task_start_time", property="taskStartTime", jdbcType=JdbcType.TIMESTAMP),
     @Result(column="task_end_time", property="taskEndTime", jdbcType=JdbcType.TIMESTAMP),
     @Result(column="rode_id", property="rodeId", jdbcType=JdbcType.SMALLINT),
+
     @Result(column="task_status", property="taskStatus", jdbcType=JdbcType.CHAR),
     @Result(column="is_delete", property="isDelete", jdbcType=JdbcType.CHAR),
-    @Result(column = "task_type_id",
-      property = "taskType",
-      one=@One(select ="cn.unicom.fj.uav.dao.TaskTypeMapper.selectByPrimaryKey" ,
-        //FetchType.EAGER急加载，加载一个实体时，定义急加载的属性会立即从数据库中加载。
-        fetchType= FetchType.EAGER)
-
-    )
+    @Result(column = "task_type_id", property = "taskType",
+        one=@One(select ="cn.unicom.fj.uav.dao.TaskTypeMapper.selectByPrimaryKey" ,fetchType= FetchType.EAGER)),
+    @Result(column="rode_id", property="route",
+        one=@One(select ="cn.unicom.fj.uav.dao.helper.RouteHelperMapper.getRouteById" ,fetchType= FetchType.EAGER))
   })
   List<FlyTask> getNewsByCondition(
           @Param("taskType") String taskType,

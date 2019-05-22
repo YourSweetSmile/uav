@@ -2,6 +2,7 @@ package cn.unicom.fj.uav.dao.helper;
 
 import cn.unicom.fj.uav.dao.RouteMapper;
 import cn.unicom.fj.uav.model.helper.RouteHelper;
+import com.fasterxml.jackson.databind.JavaType;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
 import org.apache.ibatis.type.JdbcType;
@@ -59,12 +60,12 @@ public interface RouteHelperMapper extends RouteMapper {
     //根据id查route
     @Select("<script>" +
             "select * from ent_route where 1=1 and is_delete=0" +
-            "<if test='id!=null'>" +
+            "<if test='_parameter!=null'>" +
             "and id = #{id}" +
             "</if>" +
             "</script>")
     @Results({
-            @Result(column="id", property="id", jdbcType= JdbcType.SMALLINT, id=true),
+            @Result(column="id", property="id", jdbcType= JdbcType.SMALLINT,id=true),
             @Result(column="route_no", property="routeNo", jdbcType=JdbcType.VARCHAR),
             @Result(column="route_name", property="routeName", jdbcType=JdbcType.VARCHAR),
             @Result(column="route_leave", property="routeLeave", jdbcType=JdbcType.SMALLINT),
@@ -90,6 +91,6 @@ public interface RouteHelperMapper extends RouteMapper {
                             fetchType = FetchType.EAGER)
             )
     })
-    RouteHelper getRouteById(Short id);
+    RouteHelper getRouteById( Short id);
 
 }
