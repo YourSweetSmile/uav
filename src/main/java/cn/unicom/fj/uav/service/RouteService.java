@@ -21,6 +21,10 @@ public class RouteService {
     public List<RouteHelper> getAllRoute(RouteHelper routeHelper){
         return routeHelperMapper.getAllRoute(routeHelper);
     }
+
+//    public RouteHelper getRouteById(Short id){
+//        return routeHelperMapper.getRouteById(id);
+//    }
     //添加数据
     public int insert(Route record){
         return routeMapper.insert(record);

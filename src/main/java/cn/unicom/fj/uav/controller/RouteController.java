@@ -57,6 +57,9 @@ public class RouteController {
         routeService.updateStatus(record);
     }
 
-
+//    @RequestMapping(value="id")
+//    public RouteHelper getRouteById(Short id){
+//        return routeService.getRouteById(id);
+//    }
 
 }
