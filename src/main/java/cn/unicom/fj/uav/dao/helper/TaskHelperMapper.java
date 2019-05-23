@@ -16,7 +16,7 @@ import java.util.List;
 @Mapper
 public interface TaskHelperMapper extends TaskMapper{
     /**
-     * 查询全部数据
+     * 根据条件查询数据
      * @return
      */
     @Select("<script>" +
@@ -29,12 +29,12 @@ public interface TaskHelperMapper extends TaskMapper{
             "</if>" +
             "<if test='taskType!=null'>" +
                 "<if test='taskType.id!=null and taskType.id!=\"\"'>" +
-                "and t.task_type_id = #{taskType.id}" +
+                    "and t.task_type_id = #{taskType.id}" +
                 "</if>" +
             "</if>" +
             "<if test='route!=null'>" +
                 "<if test='route.routeName!=null and route.routeName!=\"\"'>" +
-                "and r.route_name = #{route.routeName}" +
+                    "and r.route_name = #{route.routeName}" +
                 "</if>" +
             "</if>" +
             "</script>")
@@ -57,4 +57,11 @@ public interface TaskHelperMapper extends TaskMapper{
                             fetchType= FetchType.EAGER))
     })
     List<TaskHelper> getAllTaskHelper(TaskHelper taskHelper);
+
+    @Update({
+            "update ent_task",
+            "set is_delete = 1",
+            "where id = #{id,jdbcType=SMALLINT}"
+    })
+    int updateIsDeleteByPrimaryKey(Short id);
 }
