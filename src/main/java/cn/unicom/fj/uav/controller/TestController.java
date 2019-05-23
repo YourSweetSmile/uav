@@ -1,10 +1,13 @@
 package cn.unicom.fj.uav.controller;
 
-import cn.unicom.fj.uav.exception.SysRuntimeExeption;
 import cn.unicom.fj.uav.model.helper.DeviceHelper;
 import cn.unicom.fj.uav.service.DeviceService;
 import com.github.pagehelper.PageInfo;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Api
 @RestController
 @RequestMapping("/hello")
 public class TestController {
@@ -21,6 +25,7 @@ public class TestController {
     @Autowired
     private DeviceService deviceService;
 
+    @ApiOperation(value = "testcon---")
     @RequestMapping("/say")
     public Map sayHello(){
 

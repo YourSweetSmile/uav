@@ -64,17 +64,17 @@ public class UserControl {
      * 根据输入值模糊搜索--分页
      */
     @GetMapping("/select")
-    public List<User> select(
+    public PageInfo<User> select(
             @RequestParam(value = "page", defaultValue = "1") Integer page,
             @RequestParam(value = "limit", defaultValue = "5") Integer limit,
             @RequestParam(name = "userName", defaultValue = "") String userName,
             @RequestParam(name = "userPri", defaultValue = "") String userPrivileges,
             @RequestParam(name = "userSex", defaultValue = "") String userSex
-    ){
+    )
+    {
         PageHelper.startPage(page, limit);
         List<User> list = userService.getNewsByCon(userName, userPrivileges,userSex);
         PageInfo<User> pageInfo = new PageInfo<>(list);
-        System.out.println(pageInfo);
-        return list;
+        return pageInfo;
     }
 }

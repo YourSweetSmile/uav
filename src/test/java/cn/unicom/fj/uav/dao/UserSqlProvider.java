@@ -18,7 +18,7 @@ public class UserSqlProvider {
         }
         
         if (record.getUserDate() != null) {
-            sql.VALUES("user_date", "#{userDate,jdbcType=TIMESTAMP}");
+            sql.VALUES("user_date", "#{userDate,jdbcType=DATE}");
         }
         
         if (record.getUserPrivileges() != null) {
@@ -49,7 +49,7 @@ public class UserSqlProvider {
         }
         
         if (record.getUserDate() != null) {
-            sql.SET("user_date = #{userDate,jdbcType=TIMESTAMP}");
+            sql.SET("user_date = #{userDate,jdbcType=DATE}");
         }
         
         if (record.getUserPrivileges() != null) {

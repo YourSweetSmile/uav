@@ -42,9 +42,24 @@ public class RouteController {
     //添加
     @RequestMapping(value="addlist")
     public void insert(@RequestBody Route record){
-        routeMapper.insert(record);
+        routeService.insert(record);
 
     }
+    //修改
+    @RequestMapping(value="updatelist")
+    public void update(@RequestBody Route record){
+        routeService.update(record);
+    }
 
+    //修改路线状态
+    @RequestMapping(value="setstaus")
+    public void updateStatus(@RequestBody Route record){
+        routeService.updateStatus(record);
+    }
+
+//    @RequestMapping(value="id")
+//    public RouteHelper getRouteById(Short id){
+//        return routeService.getRouteById(id);
+//    }
 
 }

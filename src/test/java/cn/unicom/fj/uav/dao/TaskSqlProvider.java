@@ -49,6 +49,10 @@ public class TaskSqlProvider {
             sql.VALUES("is_delete", "#{isDelete,jdbcType=CHAR}");
         }
         
+        if (record.getTaskHeader() != null) {
+            sql.VALUES("task_header", "#{taskHeader,jdbcType=VARCHAR}");
+        }
+        
         return sql.toString();
     }
 
@@ -90,6 +94,10 @@ public class TaskSqlProvider {
         
         if (record.getIsDelete() != null) {
             sql.SET("is_delete = #{isDelete,jdbcType=CHAR}");
+        }
+        
+        if (record.getTaskHeader() != null) {
+            sql.SET("task_header = #{taskHeader,jdbcType=VARCHAR}");
         }
         
         sql.WHERE("id = #{id,jdbcType=SMALLINT}");

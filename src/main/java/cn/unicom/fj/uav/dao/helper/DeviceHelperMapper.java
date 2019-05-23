@@ -13,6 +13,10 @@ import java.util.List;
 
 public interface DeviceHelperMapper extends DeviceMapper {
 
+
+    /**
+     * 组合查询
+     */
     @Select({
             "<script>",
             "select",
@@ -29,7 +33,7 @@ public interface DeviceHelperMapper extends DeviceMapper {
                     "and device_num=#{deviceNum}",
                 "</if>",
                 "<if test='deviceName!=null and deviceName!=\"\"'>",
-                    "and device_name like %${deviceName}%",
+                    "and device_name like '%${deviceName}%'",
                 "</if>",
                 "<if test='deviceType!=null and deviceType!=\"\"'>",
                     "and device_type=#{deviceType}",
@@ -42,6 +46,12 @@ public interface DeviceHelperMapper extends DeviceMapper {
                  "</if>",
                 "<if test='createTimeEnd!=null'>",
                     "and create_time&lt;=#{createTimeEnd}",
+                "</if>",
+                "<if test='sort==\"-id\"'>",
+                    "order by id desc",
+                "</if>",
+                "<if test='sort==\"+id\"'>",
+                    "order by id",
                 "</if>",
             "</script>"
     })
@@ -75,4 +85,5 @@ public interface DeviceHelperMapper extends DeviceMapper {
                             fetchType= FetchType.EAGER))
     })
     List<DeviceHelper> selectByHelper(DeviceHelper deviceHelper);
+
 }

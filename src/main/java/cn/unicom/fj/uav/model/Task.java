@@ -23,6 +23,8 @@ public class Task {
 
     private String isDelete;
 
+    private String taskHeader;
+
     public Short getId() {
         return id;
     }
@@ -103,5 +105,11 @@ public class Task {
         this.isDelete = isDelete == null ? null : isDelete.trim();
     }
 
+    public String getTaskHeader() {
+        return taskHeader;
+    }
 
+    public void setTaskHeader(String taskHeader) {
+        this.taskHeader = taskHeader == null ? null : taskHeader.trim();
+    }
 }

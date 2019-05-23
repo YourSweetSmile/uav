@@ -24,7 +24,7 @@ public interface UserMapper {
         "user_sex, user_company, ",
         "user_telephone)",
         "values (#{userId,jdbcType=SMALLINT}, #{userName,jdbcType=VARCHAR}, ",
-        "#{userDate,jdbcType=TIMESTAMP}, #{userPrivileges,jdbcType=VARCHAR}, ",
+        "#{userDate,jdbcType=DATE}, #{userPrivileges,jdbcType=VARCHAR}, ",
         "#{userSex,jdbcType=VARCHAR}, #{userCompany,jdbcType=VARCHAR}, ",
         "#{userTelephone,jdbcType=CHAR})"
     })
@@ -42,7 +42,7 @@ public interface UserMapper {
     @Results({
         @Result(column="user_id", property="userId", jdbcType=JdbcType.SMALLINT, id=true),
         @Result(column="user_name", property="userName", jdbcType=JdbcType.VARCHAR),
-        @Result(column="user_date", property="userDate", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="user_date", property="userDate", jdbcType=JdbcType.DATE),
         @Result(column="user_privileges", property="userPrivileges", jdbcType=JdbcType.VARCHAR),
         @Result(column="user_sex", property="userSex", jdbcType=JdbcType.VARCHAR),
         @Result(column="user_company", property="userCompany", jdbcType=JdbcType.VARCHAR),
@@ -56,7 +56,7 @@ public interface UserMapper {
     @Update({
         "update sys_uav_user",
         "set user_name = #{userName,jdbcType=VARCHAR},",
-          "user_date = #{userDate,jdbcType=TIMESTAMP},",
+          "user_date = #{userDate,jdbcType=DATE},",
           "user_privileges = #{userPrivileges,jdbcType=VARCHAR},",
           "user_sex = #{userSex,jdbcType=VARCHAR},",
           "user_company = #{userCompany,jdbcType=VARCHAR},",

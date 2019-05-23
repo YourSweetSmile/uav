@@ -9,6 +9,8 @@ public class DeviceHelper extends Device {
 
     private TaskType taskType;
 
+    private String sort;
+
     private Date createTimeStart;
 
     private Date createTimeEnd;
@@ -35,5 +37,13 @@ public class DeviceHelper extends Device {
 
     public void setCreateTimeEnd(Date createTimeEnd) {
         this.createTimeEnd = createTimeEnd;
+    }
+
+    public String getSort() {
+        return sort;
+    }
+
+    public void setSort(String sort) {
+        this.sort = sort;
     }
 }

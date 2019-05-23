@@ -71,7 +71,6 @@ public interface UserMapper {
      */
     @UpdateProvider(type = UserSqlProvider.class, method = "updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(User record);
-
     @Update({
             "update sys_uav_user",
             "set user_name = #{userName,jdbcType=VARCHAR},",

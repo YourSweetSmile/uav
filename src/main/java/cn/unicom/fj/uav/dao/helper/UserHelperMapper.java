@@ -29,7 +29,7 @@ public interface UserHelperMapper extends UserMapper {
 
     /**
      * 模糊搜索
-     * @param userName
+     * @param a
      * @param userPri
      * @param userSex
      * @return
@@ -57,7 +57,7 @@ public interface UserHelperMapper extends UserMapper {
     })
     List<User> getNewsByCondition(
             //有多个参数时需要用param
-            @Param("userName") String userName,
+            @Param("userName") String a,
             @Param("userPri") String userPri,
             @Param("userSex") String userSex
     );

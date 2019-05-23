@@ -2,6 +2,7 @@ package cn.unicom.fj.uav.dao;
 
 import cn.unicom.fj.uav.model.Route;
 import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.mapping.FetchType;
 import org.apache.ibatis.type.JdbcType;
 
 public interface RouteMapper {
@@ -66,4 +67,12 @@ public interface RouteMapper {
         "where id = #{id,jdbcType=SMALLINT}"
     })
     int updateByPrimaryKey(Route record);
+
+    //修改路线状态
+    @Update({
+            "update ent_route",
+            "set route_status = #{routeStatus,jdbcType=CHAR}",
+            "where id = #{id,jdbcType=SMALLINT}"
+    })
+    int updateStatus(Route record);
 }

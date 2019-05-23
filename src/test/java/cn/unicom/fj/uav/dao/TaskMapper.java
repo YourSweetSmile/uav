@@ -23,12 +23,14 @@ public interface TaskMapper {
         "task_type_id, device_id, ",
         "task_build_time, task_start_time, ",
         "task_end_time, rode_id, ",
-        "task_status, is_delete)",
+        "task_status, is_delete, ",
+        "task_header)",
         "values (#{id,jdbcType=SMALLINT}, #{taskName,jdbcType=VARCHAR}, ",
         "#{taskTypeId,jdbcType=TINYINT}, #{deviceId,jdbcType=SMALLINT}, ",
         "#{taskBuildTime,jdbcType=TIMESTAMP}, #{taskStartTime,jdbcType=TIMESTAMP}, ",
         "#{taskEndTime,jdbcType=TIMESTAMP}, #{rodeId,jdbcType=SMALLINT}, ",
-        "#{taskStatus,jdbcType=CHAR}, #{isDelete,jdbcType=CHAR})"
+        "#{taskStatus,jdbcType=CHAR}, #{isDelete,jdbcType=CHAR}, ",
+        "#{taskHeader,jdbcType=VARCHAR})"
     })
     int insert(Task record);
 
@@ -38,7 +40,7 @@ public interface TaskMapper {
     @Select({
         "select",
         "id, task_name, task_type_id, device_id, task_build_time, task_start_time, task_end_time, ",
-        "rode_id, task_status, is_delete",
+        "rode_id, task_status, is_delete, task_header",
         "from ent_task",
         "where id = #{id,jdbcType=SMALLINT}"
     })
@@ -52,7 +54,8 @@ public interface TaskMapper {
         @Result(column="task_end_time", property="taskEndTime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="rode_id", property="rodeId", jdbcType=JdbcType.SMALLINT),
         @Result(column="task_status", property="taskStatus", jdbcType=JdbcType.CHAR),
-        @Result(column="is_delete", property="isDelete", jdbcType=JdbcType.CHAR)
+        @Result(column="is_delete", property="isDelete", jdbcType=JdbcType.CHAR),
+        @Result(column="task_header", property="taskHeader", jdbcType=JdbcType.VARCHAR)
     })
     Task selectByPrimaryKey(Short id);
 
@@ -69,7 +72,8 @@ public interface TaskMapper {
           "task_end_time = #{taskEndTime,jdbcType=TIMESTAMP},",
           "rode_id = #{rodeId,jdbcType=SMALLINT},",
           "task_status = #{taskStatus,jdbcType=CHAR},",
-          "is_delete = #{isDelete,jdbcType=CHAR}",
+          "is_delete = #{isDelete,jdbcType=CHAR},",
+          "task_header = #{taskHeader,jdbcType=VARCHAR}",
         "where id = #{id,jdbcType=SMALLINT}"
     })
     int updateByPrimaryKey(Task record);
