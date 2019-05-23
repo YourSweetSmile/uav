@@ -16,7 +16,7 @@ import java.util.List;
 @Service
 public class TaskService {
     /**
-     * 查询全部
+     * 根据条件查询数据
      */
     @Autowired
     private TaskHelperMapper taskHelperMapper;
@@ -54,6 +54,13 @@ public class TaskService {
      */
     public Task selectByPrimaryKey(Short id) {
         return taskMapper.selectByPrimaryKey(id);
+    }
+
+    /**
+     * 更新IsDelete
+     */
+    public int updateIsDeleteByPrimaryKey(Short id){
+        return taskHelperMapper.updateIsDeleteByPrimaryKey(id);
     }
 }
 

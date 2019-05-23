@@ -16,7 +16,11 @@ public class AdminUserController {
     private AdminUserService adminUserService;
 
     @RequestMapping(value="system")
-    public AdminUser selectByPrimaryKey(@RequestParam(value = "id") Short id){
-        return adminUserService.selectByPrimaryKey(id);
+    public AdminUser login(@RequestParam(value = "userNo") String user_no,
+                           @RequestParam(value = "userPwd") String user_pwd){
+        AdminUser adminUser=new AdminUser();
+        adminUser.setUserNo(user_no);
+        adminUser.setUserPwd(user_pwd);
+        return adminUserService.login(adminUser);
     }
 }

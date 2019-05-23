@@ -47,4 +47,12 @@ private RouteHelper route;
   }
 //排序
   private String order;
+
+  public String getOrder() {
+    return order;
+  }
+
+  public void setOrder(String order) {
+    this.order = order;
+  }
 }

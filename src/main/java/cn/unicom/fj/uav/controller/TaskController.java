@@ -22,16 +22,10 @@ public class TaskController {
     private TaskService taskService;
 
     /**
-     * 查询全部数据
+     * 根据条件查询数据
      * @param
      * @return
      */
-//    @RequestMapping(value="list")
-//    public List<TaskHelper> getAllTaskHelper(@RequestBody TaskHelper taskHelper){
-//        return taskService.getAllTaskHelper(taskHelper);
-//        //List<TaskHelper> list=taskService.getAllTaskHelper(taskHelper);
-//        //return list;
-//    }
     @PostMapping(value="list")
     public PageInfo<TaskHelper> getAllTaskHelper(
                              @RequestParam(value = "page",defaultValue = "1") Integer page,
@@ -49,6 +43,14 @@ public class TaskController {
     @RequestMapping(value="del")
     public int deleteByPrimaryKey(Short id){
         return taskService.deleteByPrimaryKey(id);
+    }
+
+    /**
+     * 更新IsDelete
+     */
+    @RequestMapping(value="isdelete")
+    public int updateIsDeleteByPrimaryKey(Short id){
+        return taskService.updateIsDeleteByPrimaryKey(id);
     }
 
     /**

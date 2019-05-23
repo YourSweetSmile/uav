@@ -27,6 +27,7 @@ public class RouteService {
 //    }
     //添加数据
     public int insert(Route record){
+        record.setIsDelete("0");
         return routeMapper.insert(record);
     }
 
