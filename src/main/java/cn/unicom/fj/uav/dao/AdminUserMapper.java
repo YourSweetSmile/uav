@@ -35,6 +35,24 @@ public interface AdminUserMapper {
         @Result(column="user_name", property="userName", jdbcType=JdbcType.VARCHAR)
     })
     AdminUser selectByPrimaryKey(Short id);
+    /**
+     * 登录验证，根据user_no
+     * @param user_no
+     * @return
+     */
+    @Select({
+            "select",
+            "id, user_no,user_pwd, user_name",
+            "from sys_admin_user",
+            "where user_no = #{userNo} and user_pwd = #{userPwd}"
+    })
+    @Results({
+            @Result(column="id", property="id", jdbcType=JdbcType.SMALLINT, id=true),
+            @Result(column="user_no", property="userNo", jdbcType=JdbcType.VARCHAR),
+            @Result(column="user_pwd", property="userPwd", jdbcType=JdbcType.VARCHAR),
+            @Result(column="user_name", property="userName", jdbcType=JdbcType.VARCHAR)
+    })
+    AdminUser login(AdminUser adminUser);
 
     @UpdateProvider(type=AdminUserSqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(AdminUser record);

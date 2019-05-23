@@ -12,7 +12,7 @@ public class AdminUserService {
     @Autowired
     private AdminUserMapper adminUserMapper;
 
-    public AdminUser selectByPrimaryKey(Short id){
-        return adminUserMapper.selectByPrimaryKey(id);
+    public AdminUser login(AdminUser adminUser){
+        return adminUserMapper.login(adminUser);
     }
 }

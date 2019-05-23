@@ -25,6 +25,9 @@ public interface RouteHelperMapper extends RouteMapper {
             "<if test='routeEnd!=null'>" +
             "and route_end = #{routeEnd}" +
             "</if>" +
+            "<if test='routeStatus!=null and routeStatus!=\"\"'>" +
+            "and route_status = #{routeStatus}" +
+            "</if>" +
             "<if test='taskTypeId!=null'>" +
             "and task_type_id = #{taskTypeId}" +
             "</if>" +
