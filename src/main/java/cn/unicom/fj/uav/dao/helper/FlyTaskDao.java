@@ -3,6 +3,7 @@ package cn.unicom.fj.uav.dao.helper;
 import cn.unicom.fj.uav.dao.TaskMapper;
 import cn.unicom.fj.uav.model.Task;
 import cn.unicom.fj.uav.model.helper.FlyTask;
+import cn.unicom.fj.uav.model.helper.RouteHelper;
 import cn.unicom.fj.uav.service.FlyService;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
@@ -58,16 +59,19 @@ int updateFlyTask(@Param("id") Short id,
 
   //检索
   @Select("<script>" +
-    "select * from ent_task where 1=1" +
+          "select t.id tid,t.is_delete tis_delete,t.* from ent_task t left join ent_route r on t.rode_id=r.id where t.is_delete=0" +
+//    "select * from ent_task where 1=1" +
     "<if test='taskType!=null and taskType!=\"\"'>" +
     " and task_type_id=#{taskType}"+
     "</if>"+
     "<if test='deviceId!=null and deviceId!=\"\"'>" +
     " and device_id like '%${deviceId}%'"+
     "</if>"+
-    "<if test='rodeId!=null and rodeId!=\"\"'>" +
-    " and rode_id = #{rodeId}"+
-    "</if>"+
+    "<if test='route!=null'>" +
+          "<if test='route.routeArrival!=null and route.routeArrival!=\"\"'>" +
+          "and r.route_arrival = #{route.routeArrival}" +
+          "</if>" +
+    "</if>" +
     "<if test='order!=null and order==\"+id\"'>" +
     " order by id asc"+
     "</if>"+
@@ -92,11 +96,13 @@ int updateFlyTask(@Param("id") Short id,
     @Result(column="rode_id", property="route",
         one=@One(select ="cn.unicom.fj.uav.dao.helper.RouteHelperMapper.getRouteById" ,fetchType= FetchType.EAGER))
   })
-  List<FlyTask> getNewsByCondition(
-          @Param("taskType") String taskType,
-          @Param("deviceId") String deviceId,
-          @Param("rodeId") String rodeId,
-          @Param("order") String order
-  );
+//  List<FlyTask> getNewsByCondition(
+//          @Param("taskType") String taskType,
+//          @Param("deviceId") String deviceId,
+//          @Param("route") String rodeId,
+//          @Param("order") String order
+//  );
+  List<FlyTask> getNewsByCondition(FlyTask flyTask);
+
 
 }
