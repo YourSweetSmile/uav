@@ -25,6 +25,8 @@ public class Task {
 
     private String taskHeader;
 
+    private String taskDesc;
+
     public Short getId() {
         return id;
     }
@@ -111,5 +113,13 @@ public class Task {
 
     public void setTaskHeader(String taskHeader) {
         this.taskHeader = taskHeader == null ? null : taskHeader.trim();
+    }
+
+    public String getTaskDesc() {
+        return taskDesc;
+    }
+
+    public void setTaskDesc(String taskDesc) {
+        this.taskDesc = taskDesc == null ? null : taskDesc.trim();
     }
 }

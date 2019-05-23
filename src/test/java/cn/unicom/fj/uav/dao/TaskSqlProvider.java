@@ -53,6 +53,10 @@ public class TaskSqlProvider {
             sql.VALUES("task_header", "#{taskHeader,jdbcType=VARCHAR}");
         }
         
+        if (record.getTaskDesc() != null) {
+            sql.VALUES("task_desc", "#{taskDesc,jdbcType=VARCHAR}");
+        }
+        
         return sql.toString();
     }
 
@@ -98,6 +102,10 @@ public class TaskSqlProvider {
         
         if (record.getTaskHeader() != null) {
             sql.SET("task_header = #{taskHeader,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getTaskDesc() != null) {
+            sql.SET("task_desc = #{taskDesc,jdbcType=VARCHAR}");
         }
         
         sql.WHERE("id = #{id,jdbcType=SMALLINT}");
