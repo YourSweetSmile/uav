@@ -17,6 +17,10 @@ public class AdminUserSqlProvider {
             sql.VALUES("user_no", "#{userNo,jdbcType=VARCHAR}");
         }
         
+        if (record.getUserPwd() != null) {
+            sql.VALUES("user_pwd", "#{userPwd,jdbcType=VARCHAR}");
+        }
+        
         if (record.getUserName() != null) {
             sql.VALUES("user_name", "#{userName,jdbcType=VARCHAR}");
         }
@@ -30,6 +34,10 @@ public class AdminUserSqlProvider {
         
         if (record.getUserNo() != null) {
             sql.SET("user_no = #{userNo,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getUserPwd() != null) {
+            sql.SET("user_pwd = #{userPwd,jdbcType=VARCHAR}");
         }
         
         if (record.getUserName() != null) {

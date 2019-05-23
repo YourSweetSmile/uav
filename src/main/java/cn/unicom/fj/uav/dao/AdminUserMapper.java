@@ -13,9 +13,9 @@ public interface AdminUserMapper {
 
     @Insert({
         "insert into sys_admin_user (id, user_no, ",
-        "user_name)",
+        "user_pwd, user_name)",
         "values (#{id,jdbcType=SMALLINT}, #{userNo,jdbcType=VARCHAR}, ",
-        "#{userName,jdbcType=VARCHAR})"
+        "#{userPwd,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR})"
     })
     int insert(AdminUser record);
 
@@ -24,13 +24,14 @@ public interface AdminUserMapper {
 
     @Select({
         "select",
-        "id, user_no, user_name",
+        "id, user_no, user_pwd, user_name",
         "from sys_admin_user",
         "where id = #{id,jdbcType=SMALLINT}"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.SMALLINT, id=true),
         @Result(column="user_no", property="userNo", jdbcType=JdbcType.VARCHAR),
+        @Result(column="user_pwd", property="userPwd", jdbcType=JdbcType.VARCHAR),
         @Result(column="user_name", property="userName", jdbcType=JdbcType.VARCHAR)
     })
     AdminUser selectByPrimaryKey(Short id);
@@ -41,6 +42,7 @@ public interface AdminUserMapper {
     @Update({
         "update sys_admin_user",
         "set user_no = #{userNo,jdbcType=VARCHAR},",
+          "user_pwd = #{userPwd,jdbcType=VARCHAR},",
           "user_name = #{userName,jdbcType=VARCHAR}",
         "where id = #{id,jdbcType=SMALLINT}"
     })

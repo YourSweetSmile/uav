@@ -53,4 +53,14 @@ public class DeviceService {
         }
         deviceHelperMapper.insert(device);
     }
+
+    public void updateDev(Device device){
+
+        if(null == device || null == device.getId()){
+            throw new SysRuntimeExeption("传入设备不能为空且唯一识别ID不能为空");
+        }
+        Device deviceDb = deviceHelperMapper.selectByPrimaryKey(device.getId());
+
+
+    }
 }

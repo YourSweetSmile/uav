@@ -5,6 +5,8 @@ public class AdminUser {
 
     private String userNo;
 
+    private String userPwd;
+
     private String userName;
 
     public Short getId() {
@@ -21,6 +23,14 @@ public class AdminUser {
 
     public void setUserNo(String userNo) {
         this.userNo = userNo == null ? null : userNo.trim();
+    }
+
+    public String getUserPwd() {
+        return userPwd;
+    }
+
+    public void setUserPwd(String userPwd) {
+        this.userPwd = userPwd == null ? null : userPwd.trim();
     }
 
     public String getUserName() {
