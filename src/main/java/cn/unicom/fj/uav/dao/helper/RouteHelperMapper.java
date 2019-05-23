@@ -10,6 +10,7 @@ import org.apache.ibatis.type.JdbcType;
 import java.util.List;
 
 public interface RouteHelperMapper extends RouteMapper {
+    //查询所有路线，关联任务类型taskType表及地点Location表
     @Select("<script>" +
             "select * from ent_route where 1=1 and is_delete=0" +
             "<if test='routeLeave!=null'>" +
