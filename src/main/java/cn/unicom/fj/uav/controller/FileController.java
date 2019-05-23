@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/file")
@@ -22,7 +23,7 @@ public class FileController {
      * @throws Exception
      */
     @PostMapping("/upload")
-    public String uploadFile(@RequestParam("file") MultipartFile mFile) throws Exception {
+    public Map uploadFile(@RequestParam("file") MultipartFile mFile) throws Exception {
 
         return fileService.uploadFile(mFile);
     }
@@ -33,7 +34,7 @@ public class FileController {
      * @param response
      * @throws Exception
      */
-    @GetMapping("/upload")
+    @GetMapping("/download")
     public void downloadFile(@RequestParam("filename") String name,
                              HttpServletRequest request,
                              HttpServletResponse response) throws Exception {

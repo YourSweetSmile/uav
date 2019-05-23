@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 文件上传
@@ -20,7 +22,7 @@ public class FileService {
     @Value("${spring.resources.static-locations}")
     private String uploadFolder;
 
-    public String uploadFile(MultipartFile mFile) throws Exception{
+    public Map uploadFile(MultipartFile mFile) throws Exception{
 
         String f = uploadFolder.substring(uploadFolder.indexOf("/"),uploadFolder.length());
         String str=mFile.getOriginalFilename();
@@ -29,7 +31,9 @@ public class FileService {
 
         mFile.transferTo(file);
 
-        return "/image/"+file.getName();
+        Map<String, Object> res = new HashMap<>(1);
+        res.put("fileUrl", "/image/"+file.getName());
+        return res;
     }
 
     public void download(String name, HttpServletRequest request, HttpServletResponse response) throws Exception {
