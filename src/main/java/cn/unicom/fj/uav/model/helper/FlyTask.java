@@ -45,4 +45,6 @@ private RouteHelper route;
   public void setRoute(RouteHelper route) {
     this.route = route;
   }
+//排序
+  private String order;
 }

@@ -4,6 +4,7 @@ import cn.unicom.fj.uav.dao.TaskMapper;
 import cn.unicom.fj.uav.dao.helper.FlyTaskDao;
 import cn.unicom.fj.uav.model.Task;
 import cn.unicom.fj.uav.model.helper.FlyTask;
+import cn.unicom.fj.uav.model.helper.RouteHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,9 +37,14 @@ public class FlyService {
     return flyTaskDao.updateFlyTask(id,taskTypeId,deviceId,taskStartTime,rodeId);
   }
 
-  //检索
-  public List<FlyTask> getNewsByCon(String taskType,String deviceId,String rodeId,String order){
-    return flyTaskDao.getNewsByCondition(taskType,deviceId,rodeId,order);
-  }
+//  //检索
+//  public List<FlyTask> getNewsByCon(String taskType,String deviceId,String route, String order){
+//    return flyTaskDao.getNewsByCondition(taskType,deviceId,route,order);
+//  }
+//检索
+public List<FlyTask> getNewsByCon(FlyTask flyTask){
+    return flyTaskDao.getNewsByCondition(flyTask);
+}
+
 
 }

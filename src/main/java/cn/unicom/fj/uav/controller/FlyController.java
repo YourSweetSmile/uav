@@ -2,6 +2,7 @@ package cn.unicom.fj.uav.controller;
 
 import cn.unicom.fj.uav.model.Task;
 import cn.unicom.fj.uav.model.helper.FlyTask;
+import cn.unicom.fj.uav.model.helper.RouteHelper;
 import cn.unicom.fj.uav.service.FlyService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -59,23 +60,43 @@ public class FlyController {
     return flyService.updateFlyTask(id,taskTypeId,deviceId,taskStartTime,rodeId);
     }
 
-  //检索
-  @GetMapping(value = "selectFly")
-  public PageInfo<FlyTask> select(
-    @RequestParam(value = "page",defaultValue = "1") int page,
-    @RequestParam(value = "limit",defaultValue = "10") int limit,
-    @RequestParam(name="taskType",defaultValue = "") String taskType,
-    @RequestParam(name="deviceId",defaultValue = "") String deviceId,
-    @RequestParam(name="rodeId",defaultValue = "") String rodeId,
-    @RequestParam(name="order",defaultValue = "+id") String order)
-  {
-    //开启查询器
-    PageHelper.startPage(page,limit);
-    //查询符合条件的结果集
-    List<FlyTask> list=flyService.getNewsByCon(taskType,deviceId,rodeId,order);
-    //根据前端要求扔回数据
-    PageInfo<FlyTask> pageInfo=new PageInfo<>(list);
-    return pageInfo;
-  }
+//  //检索
+//  @GetMapping(value = "selectFly")
+//  public PageInfo<FlyTask> select(
+//    @RequestParam(value = "page",defaultValue = "1") int page,
+//    @RequestParam(value = "limit",defaultValue = "10") int limit,
+//    @RequestParam(name="taskType",defaultValue = "") String taskType,
+//    @RequestParam(name="deviceId",defaultValue = "") String deviceId,
+//    @RequestParam(name="route",defaultValue = "") String route,
+//    @RequestParam(name="order",defaultValue = "+id") String order
+//  )
+//  {
+//    //开启查询器
+//    PageHelper.startPage(page,limit);
+//    //查询符合条件的结果集
+//    List<FlyTask> list=flyService.getNewsByCon( taskType,deviceId,route,order);
+//    //根据前端要求扔回数据
+//    PageInfo<FlyTask> pageInfo=new PageInfo<>(list);
+//    return pageInfo;
+//  }
+//检索
+@RequestMapping(value = "selectFly")
+public PageInfo<FlyTask> select(
+        @RequestParam(value = "page",defaultValue = "1") int page,
+        @RequestParam(value = "limit",defaultValue = "10") int limit,
+        @RequestBody FlyTask flyTask
+)
+{
+  //开启查询器
+  PageHelper.startPage(page,limit);
+  //查询符合条件的结果集
+  List<FlyTask> list=flyService.getNewsByCon( flyTask);
+  //根据前端要求扔回数据
+  PageInfo<FlyTask> pageInfo=new PageInfo<>(list);
+  return pageInfo;
+}
+
+
+
 
 }
