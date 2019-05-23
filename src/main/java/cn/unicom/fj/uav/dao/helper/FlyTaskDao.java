@@ -61,9 +61,14 @@ int updateFlyTask(@Param("id") Short id,
   @Select("<script>" +
           "select t.id tid,t.is_delete tis_delete,t.* from ent_task t left join ent_route r on t.rode_id=r.id where t.is_delete=0" +
 //    "select * from ent_task where 1=1" +
-    "<if test='taskType!=null and taskType!=\"\"'>" +
-    " and task_type_id=#{taskType}"+
-    "</if>"+
+//    "<if test='taskType!=null and taskType!=\"\"'>" +
+//    " and task_type_id=#{taskType}"+
+//    "</if>"+
+   "<if test='taskType!=null'>" +
+          "<if test='taskType.id!=null and taskType.id!=\"\"'>" +
+          "and t.task_type_id = #{taskType.id}" +
+          "</if>" +
+   "</if>" +
     "<if test='deviceId!=null and deviceId!=\"\"'>" +
     " and device_id like '%${deviceId}%'"+
     "</if>"+
@@ -73,10 +78,10 @@ int updateFlyTask(@Param("id") Short id,
           "</if>" +
     "</if>" +
     "<if test='order!=null and order==\"+id\"'>" +
-    " order by id asc"+
+    " order by tid asc"+
     "</if>"+
     "<if test='order!=null and order==\"-id\"'>" +
-    " order by id desc"+
+    " order by tid desc"+
     "</if>"+
     "</script>")
   @Results({
