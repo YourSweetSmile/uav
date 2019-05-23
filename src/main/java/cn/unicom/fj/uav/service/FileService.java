@@ -32,9 +32,8 @@ public class FileService {
         return "/image/"+file.getName();
     }
 
-    public void download(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void download(String name, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        String name=request.getParameter("name");
         String filePath = uploadFolder.substring(uploadFolder.indexOf("/"),uploadFolder.length());
         File file = new File(filePath + "/" + name);
 

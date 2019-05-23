@@ -29,14 +29,14 @@ public class FileController {
 
     /**
      * 下载文件
-     * @param fileName
+     * @param name
      * @param response
      * @throws Exception
      */
     @GetMapping("/upload")
-    public void downloadFile(
+    public void downloadFile(@RequestParam("filename") String name,
                              HttpServletRequest request,
                              HttpServletResponse response) throws Exception {
-        fileService.download(request, response);
+        fileService.download(name, request, response);
     }
 }
