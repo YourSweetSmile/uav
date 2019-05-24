@@ -58,10 +58,25 @@ public interface TaskHelperMapper extends TaskMapper{
     })
     List<TaskHelper> getAllTaskHelper(TaskHelper taskHelper);
 
+    /**
+     * 更改is_delete值
+     * @return
+     */
     @Update({
             "update ent_task",
             "set is_delete = 1",
             "where id = #{id,jdbcType=SMALLINT}"
     })
     int updateIsDeleteByPrimaryKey(Short id);
+
+    @Update({
+            "update ent_task",
+            "set task_name = #{taskName,jdbcType=VARCHAR},",
+            "task_type_id = #{taskTypeId,jdbcType=TINYINT},",
+            "task_start_time = #{taskStartTime,jdbcType=TIMESTAMP},",
+            "rode_id = #{rodeId,jdbcType=SMALLINT},",
+            "task_status = #{taskStatus,jdbcType=CHAR},",
+            "where id = #{id,jdbcType=SMALLINT}"
+    })
+    int updateTaskByPrimaryKey(Task record);
 }

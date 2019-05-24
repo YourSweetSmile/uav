@@ -76,4 +76,9 @@ public class TaskController {
     public Task selectByPrimaryKey(Short id){
         return taskService.selectByPrimaryKey(id);
     }
+
+    @PostMapping(value="update")
+    public int updateTaskByPrimaryKey(@RequestBody Task record){
+        return taskService.updateTaskByPrimaryKey(record);
+    }
 }

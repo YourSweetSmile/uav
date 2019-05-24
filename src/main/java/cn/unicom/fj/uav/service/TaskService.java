@@ -24,6 +24,9 @@ public class TaskService {
     public List<TaskHelper> getAllTaskHelper( TaskHelper taskHelper) {
         return taskHelperMapper.getAllTaskHelper(taskHelper);
     }
+    public int updateTaskByPrimaryKey(Task record){
+        return taskHelperMapper.updateTaskByPrimaryKey(record);
+    }
 
     /**
      * 按ID删除
@@ -62,5 +65,7 @@ public class TaskService {
     public int updateIsDeleteByPrimaryKey(Short id){
         return taskHelperMapper.updateIsDeleteByPrimaryKey(id);
     }
+
+
 }
 
