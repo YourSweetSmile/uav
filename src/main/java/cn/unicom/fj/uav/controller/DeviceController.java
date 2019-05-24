@@ -44,4 +44,24 @@ public class DeviceController {
 
         deviceService.addDevice(device);
     }
+
+    /**
+     * 根据id修改设备字段
+     * @param device
+     */
+    @PostMapping("/edit")
+    public void editDevice(@RequestBody Device device){
+
+        deviceService.updateDev(device);
+    }
+
+    /**
+     * 修改设备状态
+     * @param id
+     * @param deviceStatus
+     */
+    @GetMapping("/edit/status")
+    public void stopDevice(Short id, String deviceStatus){
+        deviceService.stopDev(id, deviceStatus);
+    }
 }
