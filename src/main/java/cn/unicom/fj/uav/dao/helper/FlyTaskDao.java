@@ -1,6 +1,7 @@
 package cn.unicom.fj.uav.dao.helper;
 
 import cn.unicom.fj.uav.dao.TaskMapper;
+import cn.unicom.fj.uav.dao.TaskSqlProvider;
 import cn.unicom.fj.uav.model.Task;
 import cn.unicom.fj.uav.model.helper.FlyTask;
 import cn.unicom.fj.uav.model.helper.RouteHelper;
@@ -36,27 +37,32 @@ public interface FlyTaskDao extends TaskMapper {
 
   })
   List<FlyTask> getAllTask();
-
-  //新增飞行区域统计表字段
+//将字段改成已删除状态
+@Update({
+        "update ent_task",
+        "set is_delete = 1",
+        "where id = #{id,jdbcType=SMALLINT}"
+})
+int IsDeleteByPrimaryKey(Short id);
+//  //新增飞行区域统计表字段
   @Insert({
-    "insert into ent_task ( task_type_id, device_id, task_start_time, rode_id)",
-    "values (#{taskTypeId,jdbcType=TINYINT}, #{deviceId,jdbcType=SMALLINT}, ",
-    " #{taskStartTime,jdbcType=TIMESTAMP}, ",
-    " #{rodeId,jdbcType=SMALLINT})"
+          "insert into ent_task (task_type_id, device_id, ",
+          "task_start_time)",
+          "values (#{taskTypeId,jdbcType=TINYINT}, #{deviceId,jdbcType=SMALLINT}, ",
+          "#{taskStartTime,jdbcType=TIMESTAMP})"
   })
-  int insertFly(@Param("taskTypeId") Byte taskTypeId,
-                @Param("deviceId") Short deviceId,
-                @Param("taskStartTime") String taskStartTime,
-                @Param("rodeId") Short rodeId);
+  int insertFly(FlyTask record);
+
 
   //更新飞行区域统计表字段
-@Update("update ent_task set id=#{id},task_type_id=#{taskTypeId}, device_id=#{deviceId}, task_start_time=#{taskStartTime}, rode_id=#{rodeId} where id=#{id}")
-int updateFlyTask(@Param("id") Short id,
-                  @Param("taskTypeId") Byte taskTypeId,
-                  @Param("deviceId") Short deviceId,
-                  @Param("taskStartTime") String taskStartTime,
-                  @Param("rodeId") Short rodeId);
-
+  @Update({
+          "update ent_task",
+          "set task_type_id = #{taskTypeId,jdbcType=TINYINT},",
+          "device_id = #{deviceId,jdbcType=SMALLINT},",
+          "task_start_time = #{taskStartTime,jdbcType=TIMESTAMP}",
+          "where id = #{id,jdbcType=SMALLINT}"
+  })
+  int updateFlyTask(FlyTask record);
   //检索
   @Select("<script>" +
           "select t.id tid,t.is_delete tis_delete,t.* from ent_task t left join ent_route r on t.rode_id=r.id where t.is_delete=0" +
@@ -101,12 +107,7 @@ int updateFlyTask(@Param("id") Short id,
     @Result(column="rode_id", property="route",
         one=@One(select ="cn.unicom.fj.uav.dao.helper.RouteHelperMapper.getRouteById" ,fetchType= FetchType.EAGER))
   })
-//  List<FlyTask> getNewsByCondition(
-//          @Param("taskType") String taskType,
-//          @Param("deviceId") String deviceId,
-//          @Param("route") String rodeId,
-//          @Param("order") String order
-//  );
+
   List<FlyTask> getNewsByCondition(FlyTask flyTask);
 
 
