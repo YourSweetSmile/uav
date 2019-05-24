@@ -40,11 +40,6 @@ public class GlobalExceptionHandler implements ResponseBodyAdvice<Object> {
     @Autowired
     private Swagger2Settings swagger2Settings;
 
-    @Bean
-    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-        return new PropertySourcesPlaceholderConfigurer();
-    }
-
     @Override
     public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
         return true;
