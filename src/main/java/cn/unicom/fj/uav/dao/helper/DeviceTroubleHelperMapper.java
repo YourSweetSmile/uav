@@ -31,11 +31,6 @@ public interface DeviceTroubleHelperMapper extends DeviceTroubleMapper {
                 "</if>" +
             "</if>" +
             "</script>"
-//            {
-//            "select",
-//            "id, trouble_date, device_id, task_id, trouble_type, trouble_reason, is_delete",
-//            "from rel_device_trouble",
-//            }
     })
     @Results({
             @Result(column="t_id", property="id", jdbcType= JdbcType.SMALLINT, id=true),
