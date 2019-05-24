@@ -4,12 +4,14 @@ import cn.unicom.fj.uav.dao.helper.DeviceHelperMapper;
 import cn.unicom.fj.uav.exception.SysRuntimeExeption;
 import cn.unicom.fj.uav.model.Device;
 import cn.unicom.fj.uav.model.helper.DeviceHelper;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.*;
 import java.util.List;
 
 @Service
@@ -101,5 +103,29 @@ public class DeviceService {
 
         device.setDeviceStatus(deviceStatus);
         deviceHelperMapper.updateByPrimaryKey(device);
+    }
+
+    /**
+     * 导入并获取设备信息
+     * @param jsonFile
+     * @return
+     */
+    public Device importDev(File jsonFile) throws Exception {
+
+        FileReader fileReader = new FileReader(jsonFile);
+
+        Reader reader = new InputStreamReader(new FileInputStream(jsonFile),"utf-8");
+        int ch = 0;
+        StringBuffer sb = new StringBuffer();
+        while ((ch = reader.read()) != -1) {
+            sb.append((char) ch);
+        }
+        fileReader.close();
+        reader.close();
+        String jsonStr = sb.toString();
+
+        JSONObject jsonObj = (JSONObject) JSON.parse(jsonStr);
+        Device device = JSONObject.toJavaObject(jsonObj,Device.class);
+        return device;
     }
 }
