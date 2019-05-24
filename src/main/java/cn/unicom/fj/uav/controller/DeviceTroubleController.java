@@ -44,9 +44,14 @@ public class DeviceTroubleController {
      * @param record
      * @return
      */
-    @PutMapping("update")
+    @PutMapping("/update")
     public Object updateData(@RequestBody DeviceTrouble record) {
         return deviceTroubleService.updateData(record);
+    }
+
+    @PutMapping("/delete")
+    public Object deleteData(@RequestBody DeviceTrouble record) {
+        return deviceTroubleService.deleteData(record);
     }
 
 }

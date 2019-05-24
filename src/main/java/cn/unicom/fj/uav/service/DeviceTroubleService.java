@@ -51,4 +51,13 @@ public class DeviceTroubleService {
         return deviceTroubleMapper.updateByPrimaryKey(record);
     }
 
+    /**
+     * 删除数据
+     * @param record
+     * @return
+     */
+    public Object deleteData(DeviceTrouble record) {
+        record.setIsDelete("1");
+        return deviceTroubleMapper.updateByPrimaryKeySelective(record);
+    }
 }
