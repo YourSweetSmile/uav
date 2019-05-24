@@ -104,7 +104,7 @@ spring:
   resources:
     static-locations: file:/root/myfile/file-temp/
 server:
-  port: 80
+  port: 8899
 app:
   swagger2:
     isShow: false
