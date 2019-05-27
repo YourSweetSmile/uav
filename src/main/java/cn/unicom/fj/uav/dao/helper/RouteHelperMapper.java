@@ -1,6 +1,8 @@
 package cn.unicom.fj.uav.dao.helper;
 
 import cn.unicom.fj.uav.dao.RouteMapper;
+import cn.unicom.fj.uav.model.helper.RouteChartLine1;
+import cn.unicom.fj.uav.model.helper.RouteChartPie;
 import cn.unicom.fj.uav.model.helper.RouteHelper;
 import com.fasterxml.jackson.databind.JavaType;
 import org.apache.ibatis.annotations.*;
@@ -97,4 +99,80 @@ public interface RouteHelperMapper extends RouteMapper {
     })
     RouteHelper getRouteById( Short id);
 
+    /**
+     * 查询路线管理模块饼图数据
+     */
+    @Select("<script>" +
+            "select count(r.id) value ,co.district_name name" +
+            " from ent_route r left JOIN ent_location l on r.route_leave=l.id" +
+            " right JOIN" +
+            " ent_county co on co.district_id=l.county_id"+
+            " where co.city_id = #{cityId}" +
+            " GROUP BY co.district_id,co.district_name"+
+            "</script>")
+    List<RouteChartPie> getChart(String cityId);
+
+    /**
+     * 查询路线管理模块折线图数据路线总数（柱形图折线图中预计飞行路线总数）
+     */
+    @Select("<script>" +
+            "SELECT COUNT(r.id) VALUE,r.route_start starttime" +
+            " FROM ent_route r LEFT JOIN ent_location l ON r.route_leave=l.id" +
+            " RIGHT JOIN" +
+            " ent_county co ON co.district_id=l.county_id" +
+            " WHERE co.city_id = #{cityId}" +
+            " AND r.route_start BETWEEN (SELECT DATE_ADD(NOW(),INTERVAL -1 MONTH)) AND NOW()" +
+            " GROUP BY r.route_start"+
+            "</script>")
+    @Results({
+            @Result(column = "VALUE",property = "value"),
+            @Result(column = "starttime",property = "time")
+    })
+
+    List<RouteChartLine1> gerChartLine1(String cityId);
+
+    /**
+     * 查询路线管理模块折线图数据飞行机器总数
+     */
+    @Select("<script>" +
+            "SELECT COUNT(*) VALUE,t.task_build_time starttime" +
+            " FROM ent_task t" +
+            " WHERE t.task_build_time BETWEEN (SELECT DATE_ADD(NOW(),INTERVAL -1 MONTH)) AND NOW()" +
+            " GROUP BY t.task_build_time"+
+            "</script>")
+    @Results({
+            @Result(column = "VALUE",property = "value"),
+            @Result(column = "starttime",property = "time")
+    })
+    List<RouteChartLine1> gerChartLine2(String cityId);
+    /**
+     * 查询柱形图折线图中预计飞行路线总数
+     */
+    @Select("<script>" +
+            "SELECT COUNT(*) VALUE,t.id, DATE_FORMAT(t.task_start_time,'%Y-%m-%d') starttime" +
+            " FROM ent_task t" +
+            " WHERE t.task_build_time BETWEEN (SELECT DATE_ADD(NOW(),INTERVAL -1 MONTH)) AND NOW()" +
+            " GROUP BY DATE_FORMAT(t.task_start_time,'%Y-%m-%d')"+
+            "</script>")
+    @Results({
+            @Result(column = "VALUE",property = "value"),
+            @Result(column = "starttime",property = "time")
+    })
+
+    List<RouteChartLine1> gerChartLineBar1(String cityId);
+    /**
+     * 查询柱形图折线图中实际飞行路线总数
+     */
+    @Select("<script>" +
+            "SELECT COUNT(*) VALUE,t.id, DATE_FORMAT(t.task_start_time,'%Y-%m-%d') starttime" +
+            " FROM ent_task t" +
+            " WHERE t.task_build_time BETWEEN (SELECT DATE_ADD(NOW(),INTERVAL -1 MONTH)) AND NOW() AND task_status != \"d\"" +
+            " GROUP BY DATE_FORMAT(t.task_start_time,'%Y-%m-%d')"+
+            "</script>")
+    @Results({
+            @Result(column = "VALUE",property = "value"),
+            @Result(column = "starttime",property = "time")
+    })
+
+    List<RouteChartLine1> gerChartLineBar2(String cityId);
 }

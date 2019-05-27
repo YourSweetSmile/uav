@@ -2,6 +2,8 @@ package cn.unicom.fj.uav.controller;
 
 import cn.unicom.fj.uav.dao.RouteMapper;
 import cn.unicom.fj.uav.model.Route;
+import cn.unicom.fj.uav.model.helper.RouteChartLine1;
+import cn.unicom.fj.uav.model.helper.RouteChartPie;
 import cn.unicom.fj.uav.model.helper.RouteHelper;
 import cn.unicom.fj.uav.service.RouteService;
 import com.github.pagehelper.PageHelper;
@@ -62,4 +64,30 @@ public class RouteController {
 //        return routeService.getRouteById(id);
 //    }
 
+    //获取路线管理模块中饼图数据
+    @RequestMapping(value="chart")
+    public List<RouteChartPie> getChart(String cityId){
+        return routeService.getChart(cityId);
+    }
+
+    //获取路线管理模块中折线图数据飞行路线数
+    @RequestMapping(value="chartline1")
+    public List<RouteChartLine1> gerChartLine1(String cityId){
+        return routeService.getChartLine1(cityId);
+    };
+    //获取路线管理模块中折线图数据机器数
+    @RequestMapping(value="chartline2")
+    public List<RouteChartLine1> gerChartLine2(String cityId){
+        return routeService.getChartLine2(cityId);
+    };
+    //查询柱形图折线图中预计飞行路线总数
+    @RequestMapping(value="chartlinebar1")
+    public List<RouteChartLine1> gerChartLineBar1(String cityId){
+        return routeService.gerChartLineBar1(cityId);
+    };
+    //查询柱形图折线图中实际飞行路线总数
+    @RequestMapping(value="chartlinebar2")
+    public List<RouteChartLine1> gerChartLineBar2(String cityId){
+        return routeService.gerChartLineBar2(cityId);
+    };
 }
