@@ -18,4 +18,9 @@ public class DeviceStatisticsService {
         return deviceMapper.getTypeStat();
     }
 
+
+    public List<DeviceStatistics> getTaskTypeStat(){
+
+        return deviceMapper.getTaskTypeStat();
+    }
 }

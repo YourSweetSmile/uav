@@ -20,4 +20,9 @@ public class DeviceStatisticsController {
     public List<DeviceStatistics> getTypeStat(){
         return deviceStatisticsService.getTypeStat();
     }
+
+    @GetMapping("/task")
+    public List<DeviceStatistics> getTaskTypeStat(){
+        return deviceStatisticsService.getTaskTypeStat();
+    }
 }

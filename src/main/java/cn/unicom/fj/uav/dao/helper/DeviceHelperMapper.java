@@ -91,4 +91,7 @@ public interface DeviceHelperMapper extends DeviceMapper {
     @Select("select device_type name,count(id) value from ent_device group by device_type")
     List<DeviceStatistics> getTypeStat();
 
+
+    @Select("select count(id) value,DATE_FORMAT(create_time,'%y-%m') time from ent_device group by DATE_FORMAT(create_time,'%y-%m')")
+    List<DeviceStatistics> getTaskTypeStat();
 }
