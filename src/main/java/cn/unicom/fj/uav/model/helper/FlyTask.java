@@ -1,11 +1,13 @@
 package cn.unicom.fj.uav.model.helper;
 
 
+import cn.unicom.fj.uav.model.Location;
 import cn.unicom.fj.uav.model.Task;
 import cn.unicom.fj.uav.model.TaskType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class FlyTask extends Task {
@@ -58,7 +60,47 @@ private RouteHelper route;
   public void setRoute(RouteHelper route) {
     this.route = route;
   }
-//排序
+
+  //location
+  private Location location;
+
+  public Location getLocation() {
+    return location;
+  }
+
+  public void setLocation(Location location) {
+    this.location = location;
+  }
+
+  private BigDecimal longitude;
+  private  BigDecimal latitude;
+  private int cout;
+
+  public BigDecimal getLongitude() {
+    return longitude;
+  }
+
+  public void setLongitude(BigDecimal longitude) {
+    this.longitude = longitude;
+  }
+
+  public BigDecimal getLatitude() {
+    return latitude;
+  }
+
+  public void setLatitude(BigDecimal latitude) {
+    this.latitude = latitude;
+  }
+
+  public int getCout() {
+    return cout;
+  }
+
+  public void setCout(int cout) {
+    this.cout = cout;
+  }
+
+  //排序
   private String order;
 
   public String getOrder() {

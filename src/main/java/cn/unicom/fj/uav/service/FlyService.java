@@ -16,9 +16,10 @@ import java.util.List;
 public class FlyService {
   @Autowired
  private FlyTaskDao flyTaskDao;
-  //查询飞行区域统计表字段
-  public List<FlyTask> getAllTask(){
-    return flyTaskDao.getAllTask();
+
+ //统计飞行次数
+  public List<FlyTask> getFlyCount(int taskId){
+    return flyTaskDao.getFlyCount(taskId);
   }
 
   //更改删除状态
