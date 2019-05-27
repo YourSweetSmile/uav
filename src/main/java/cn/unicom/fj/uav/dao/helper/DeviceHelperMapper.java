@@ -2,6 +2,7 @@ package cn.unicom.fj.uav.dao.helper;
 
 import cn.unicom.fj.uav.dao.DeviceMapper;
 import cn.unicom.fj.uav.model.helper.DeviceHelper;
+import cn.unicom.fj.uav.model.helper.DeviceStatistics;
 import org.apache.ibatis.annotations.One;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
@@ -85,5 +86,9 @@ public interface DeviceHelperMapper extends DeviceMapper {
                             fetchType= FetchType.EAGER))
     })
     List<DeviceHelper> selectByHelper(DeviceHelper deviceHelper);
+
+
+    @Select("select device_type name,count(id) value from ent_device group by device_type")
+    List<DeviceStatistics> getTypeStat();
 
 }

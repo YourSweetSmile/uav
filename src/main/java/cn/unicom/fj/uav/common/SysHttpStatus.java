@@ -6,14 +6,10 @@ package cn.unicom.fj.uav.common;
  */
 public enum SysHttpStatus {
 
-    /**
-     * 系统处理成功时返回
-     */
+    /** 系统处理成功时返回 */
     SUCCESS(true, "success"),
 
-    /**
-     * 系统处理异常时返回
-     */
+    /** 系统处理异常时返回 */
     ERROR(false, "error");
 
     private final boolean success;
