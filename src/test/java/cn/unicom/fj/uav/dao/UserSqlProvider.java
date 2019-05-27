@@ -37,6 +37,14 @@ public class UserSqlProvider {
             sql.VALUES("user_telephone", "#{userTelephone,jdbcType=CHAR}");
         }
         
+        if (record.getIsDelete() != null) {
+            sql.VALUES("is_delete", "#{isDelete,jdbcType=INTEGER}");
+        }
+        
+        if (record.getProvince() != null) {
+            sql.VALUES("province", "#{province,jdbcType=VARCHAR}");
+        }
+        
         return sql.toString();
     }
 
@@ -66,6 +74,14 @@ public class UserSqlProvider {
         
         if (record.getUserTelephone() != null) {
             sql.SET("user_telephone = #{userTelephone,jdbcType=CHAR}");
+        }
+        
+        if (record.getIsDelete() != null) {
+            sql.SET("is_delete = #{isDelete,jdbcType=INTEGER}");
+        }
+        
+        if (record.getProvince() != null) {
+            sql.SET("province = #{province,jdbcType=VARCHAR}");
         }
         
         sql.WHERE("user_id = #{userId,jdbcType=SMALLINT}");

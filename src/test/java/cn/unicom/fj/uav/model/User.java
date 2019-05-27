@@ -17,6 +17,10 @@ public class User {
 
     private String userTelephone;
 
+    private Integer isDelete;
+
+    private String province;
+
     public Short getUserId() {
         return userId;
     }
@@ -71,5 +75,21 @@ public class User {
 
     public void setUserTelephone(String userTelephone) {
         this.userTelephone = userTelephone == null ? null : userTelephone.trim();
+    }
+
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province == null ? null : province.trim();
     }
 }
