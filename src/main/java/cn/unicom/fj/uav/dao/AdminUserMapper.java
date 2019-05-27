@@ -26,7 +26,7 @@ public interface AdminUserMapper {
         "select",
         "id, user_no, user_pwd, user_name",
         "from sys_admin_user",
-        "where id = #{id,jdbcType=SMALLINT}"
+        "where user_no = #{userNo,jdbcType=SMALLINT}"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.SMALLINT, id=true),
