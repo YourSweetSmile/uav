@@ -26,4 +26,25 @@ public interface TaskEchartMapper {
                             fetchType= FetchType.EAGER)),
     })
     List<TaskEchartHelper> getTaskCount();
+
+    @Select("SELECT a.click_date taskdate,IFNULL(b.type,0) AS task_type_id,IFNULL(b.count,0) AS taskcount " +
+            "FROM ( " +
+            "    SELECT DATE_SUB(CURDATE(), INTERVAL 6 DAY) AS click_date UNION ALL " +
+            "    SELECT DATE_SUB(CURDATE(), INTERVAL 5 DAY) AS click_date UNION ALL " +
+            "    SELECT DATE_SUB(CURDATE(), INTERVAL 4 DAY) AS click_date UNION ALL " +
+            "    SELECT DATE_SUB(CURDATE(), INTERVAL 3 DAY) AS click_date UNION ALL " +
+            "    SELECT DATE_SUB(CURDATE(), INTERVAL 2 DAY) AS click_date UNION ALL " +
+            "    SELECT DATE_SUB(CURDATE(), INTERVAL 1 DAY) AS click_date UNION ALL " +
+            "    SELECT CURDATE() AS click_date    " +
+            ") a LEFT JOIN (" +
+            "  SELECT DATE(task_start_time) AS DATETIME, COUNT(*) AS COUNT,task_type_id AS TYPE " +
+            "  FROM ent_task WHERE task_type_id=#{type} " +
+            "  GROUP BY DATE(task_start_time) " +
+            ") b ON a.click_date = b.datetime")
+    @Results({
+            @Result(column="task_type_id",property="taskType",
+                    one=@One(select="cn.unicom.fj.uav.dao.TaskTypeMapper.selectByPrimaryKey",
+                            fetchType= FetchType.EAGER)),
+    })
+    List<TaskEchartHelper> getCountByDate(Short type);
 }

@@ -14,4 +14,7 @@ public class TaskEchartService {
     public List<TaskEchartHelper> getTaskCount(){
         return taskEchartMapper.getTaskCount();
     }
+    public List<TaskEchartHelper> getCountByDate(Short type){
+        return taskEchartMapper.getCountByDate(type);
+    }
 }
