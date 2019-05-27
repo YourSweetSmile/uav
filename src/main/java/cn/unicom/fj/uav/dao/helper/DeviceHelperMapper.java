@@ -23,7 +23,7 @@ public interface DeviceHelperMapper extends DeviceMapper {
             "select",
             "id, device_type, task_type_id, device_status, device_num, device_name, device_comm, ",
             "power_max, capacity, fly_mileage, wind_res, water_res, hit_res, flexibility, ",
-            "emc_res, img_id, wing_loss, power_loss, camera_loss, pack_loss, engine_loss, ",
+            "emc_res, img_url, wing_loss, power_loss, camera_loss, pack_loss, engine_loss, ",
             "base_loss, create_time, device_desc",
             "from ent_device",
             "where 1=1",
@@ -57,30 +57,6 @@ public interface DeviceHelperMapper extends DeviceMapper {
             "</script>"
     })
     @Results({
-            @Result(column="id", property="id", jdbcType= JdbcType.SMALLINT, id=true),
-            @Result(column="device_type", property="deviceType", jdbcType=JdbcType.VARCHAR),
-            @Result(column="task_type_id", property="taskTypeId", jdbcType=JdbcType.SMALLINT),
-            @Result(column="device_status", property="deviceStatus", jdbcType=JdbcType.VARCHAR),
-            @Result(column="device_num", property="deviceNum", jdbcType=JdbcType.VARCHAR),
-            @Result(column="device_name", property="deviceName", jdbcType=JdbcType.VARCHAR),
-            @Result(column="device_comm", property="deviceComm", jdbcType=JdbcType.VARCHAR),
-            @Result(column="power_max", property="powerMax", jdbcType=JdbcType.INTEGER),
-            @Result(column="capacity", property="capacity", jdbcType=JdbcType.INTEGER),
-            @Result(column="fly_mileage", property="flyMileage", jdbcType=JdbcType.INTEGER),
-            @Result(column="wind_res", property="windRes", jdbcType=JdbcType.DECIMAL),
-            @Result(column="water_res", property="waterRes", jdbcType=JdbcType.DECIMAL),
-            @Result(column="hit_res", property="hitRes", jdbcType=JdbcType.DECIMAL),
-            @Result(column="flexibility", property="flexibility", jdbcType=JdbcType.DECIMAL),
-            @Result(column="emc_res", property="emcRes", jdbcType=JdbcType.DECIMAL),
-            @Result(column="img_id", property="imgId", jdbcType=JdbcType.SMALLINT),
-            @Result(column="wing_loss", property="wingLoss", jdbcType=JdbcType.DECIMAL),
-            @Result(column="power_loss", property="powerLoss", jdbcType=JdbcType.DECIMAL),
-            @Result(column="camera_loss", property="cameraLoss", jdbcType=JdbcType.DECIMAL),
-            @Result(column="pack_loss", property="packLoss", jdbcType=JdbcType.DECIMAL),
-            @Result(column="engine_loss", property="engineLoss", jdbcType=JdbcType.DECIMAL),
-            @Result(column="base_loss", property="baseLoss", jdbcType=JdbcType.DECIMAL),
-            @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
-            @Result(column="device_desc", property="deviceDesc", jdbcType=JdbcType.LONGVARCHAR),
             @Result(column="task_type_id",property="taskType",
                     one=@One(select="cn.unicom.fj.uav.dao.TaskTypeMapper.selectByPrimaryKey",
                             fetchType= FetchType.EAGER))
@@ -92,6 +68,6 @@ public interface DeviceHelperMapper extends DeviceMapper {
     List<DeviceStatistics> getTypeStat();
 
 
-    @Select("select count(id) value,DATE_FORMAT(create_time,'%y-%m') time from ent_device group by DATE_FORMAT(create_time,'%y-%m')")
+    @Select("select count(id) value,task_type_id name from ent_device group by task_type_id")
     List<DeviceStatistics> getTaskTypeStat();
 }

@@ -34,7 +34,7 @@ public class Device {
 
     private BigDecimal emcRes;
 
-    private Short imgId;
+    private String imgUrl;
 
     private BigDecimal wingLoss;
 
@@ -172,12 +172,12 @@ public class Device {
         this.emcRes = emcRes;
     }
 
-    public Short getImgId() {
-        return imgId;
+    public String getImgUrl() {
+        return imgUrl;
     }
 
-    public void setImgId(Short imgId) {
-        this.imgId = imgId;
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl == null ? null : imgUrl.trim();
     }
 
     public BigDecimal getWingLoss() {
