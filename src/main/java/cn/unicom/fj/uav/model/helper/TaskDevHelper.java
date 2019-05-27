@@ -13,12 +13,12 @@ private TaskType taskType;
 private String device;
 private Route rodes;
 private String order;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date taskBuildTime;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date taskStartTime;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date taskEndTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss" ,locale = "zh", timezone = "GMT+8")
+    private Date taskBuildTime1;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",locale = "zh", timezone = "GMT+8")
+    private Date taskStartTime1;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",locale = "zh", timezone = "GMT+8")
+    private Date taskEndTime1;
     public TaskType getTaskType() {
         return taskType;
     }
@@ -51,34 +51,28 @@ private String order;
         this.order = order;
     }
 
-    @Override
-    public Date getTaskBuildTime() {
-        return taskBuildTime;
+    public Date getTaskBuildTime1() {
+        return taskBuildTime1;
     }
 
-    @Override
-    public void setTaskBuildTime(Date taskBuildTime) {
-        this.taskBuildTime = taskBuildTime;
+    public void setTaskBuildTime1(Date taskBuildTime1) {
+        this.taskBuildTime1 = taskBuildTime1;
     }
 
-    @Override
-    public Date getTaskStartTime() {
-        return taskStartTime;
+    public Date getTaskStartTime1() {
+        return taskStartTime1;
     }
 
-    @Override
-    public void setTaskStartTime(Date taskStartTime) {
-        this.taskStartTime = taskStartTime;
+    public void setTaskStartTime1(Date taskStartTime1) {
+        this.taskStartTime1 = taskStartTime1;
     }
 
-    @Override
-    public Date getTaskEndTime() {
-        return taskEndTime;
+    public Date getTaskEndTime1() {
+        return taskEndTime1;
     }
 
-    @Override
-    public void setTaskEndTime(Date taskEndTime) {
-        this.taskEndTime = taskEndTime;
+    public void setTaskEndTime1(Date taskEndTime1) {
+        this.taskEndTime1 = taskEndTime1;
     }
 
     @Override
@@ -88,9 +82,9 @@ private String order;
                 ", device='" + device + '\'' +
                 ", rodes=" + rodes +
                 ", order='" + order + '\'' +
-                ", taskBuildTime=" + taskBuildTime +
-                ", taskStartTime=" + taskStartTime +
-                ", taskEndTime=" + taskEndTime +
+                ", taskBuildTime1=" + taskBuildTime1 +
+                ", taskStartTime1=" + taskStartTime1 +
+                ", taskEndTime1=" + taskEndTime1 +
                 '}';
     }
 }
