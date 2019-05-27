@@ -78,13 +78,14 @@ public interface TaskDevHelperMapper extends TaskMapper{
     String selectDeviceOne(int id);
     @Select({
             "select",
-            "device_name",
+            "id,device_name",
             "from ent_device"
     })
     @Results({
+            @Result(column="id", property="id", jdbcType=JdbcType.INTEGER),
             @Result(column="device_name", property="deviceName", jdbcType=JdbcType.VARCHAR)
     })
-    List<String> selectDeviceAll();
+    List<Device> selectDeviceAll();
 
     @Select({
             "select",
@@ -118,7 +119,7 @@ public interface TaskDevHelperMapper extends TaskMapper{
             "set is_delete = 1",
             "where id = #{id,jdbcType=SMALLINT}"
     })
-    int taskDelete(Integer id);
+    void taskDelete(Integer id);
 
     /**
      * 添加
@@ -133,12 +134,23 @@ public interface TaskDevHelperMapper extends TaskMapper{
             "task_status, is_delete, ",
             "task_header, task_desc)",
             "values (default, #{taskName,jdbcType=VARCHAR}, ",
-            "#{taskTypeId,jdbcType=TINYINT}, #{deviceId,jdbcType=SMALLINT}, ",
-            "default, #{taskStartTime,jdbcType=TIMESTAMP}, ",
-            "#{taskEndTime,jdbcType=TIMESTAMP}, #{rodeId,jdbcType=SMALLINT}, ",
+            "#{taskTypeId,jdbcType=TINYINT}, #{deviceId,jdbcType=SMALLINT},",
+            "default, #{taskStartTime1,jdbcType=TIMESTAMP}, ",
+            "#{taskEndTime1,jdbcType=TIMESTAMP}, #{rodeId,jdbcType=SMALLINT},",
             "#{taskStatus,jdbcType=CHAR}, default, ",
             "#{taskHeader,jdbcType=VARCHAR}, #{taskDesc,jdbcType=VARCHAR})"
     })
-    int insert(Task record);
+    int create(TaskDevHelper record);
 
+    /** 修改状态
+     *
+     * @param record
+     * @return
+     */
+    @Update({
+            "update ent_task",
+            "set task_status = #{taskStatus}",
+            "where id = #{id,jdbcType=SMALLINT}"
+    })
+    void taskStatus(Task record);
 }
