@@ -22,11 +22,13 @@ public interface UserMapper {
         "insert into sys_uav_user (user_id, user_name, ",
         "user_date, user_privileges, ",
         "user_sex, user_company, ",
-        "user_telephone)",
+        "user_telephone, is_delete, ",
+        "province)",
         "values (#{userId,jdbcType=SMALLINT}, #{userName,jdbcType=VARCHAR}, ",
         "#{userDate,jdbcType=DATE}, #{userPrivileges,jdbcType=VARCHAR}, ",
         "#{userSex,jdbcType=VARCHAR}, #{userCompany,jdbcType=VARCHAR}, ",
-        "#{userTelephone,jdbcType=CHAR})"
+        "#{userTelephone,jdbcType=CHAR}, #{isDelete,jdbcType=INTEGER}, ",
+        "#{province,jdbcType=VARCHAR})"
     })
     int insert(User record);
 
@@ -35,7 +37,8 @@ public interface UserMapper {
 
     @Select({
         "select",
-        "user_id, user_name, user_date, user_privileges, user_sex, user_company, user_telephone",
+        "user_id, user_name, user_date, user_privileges, user_sex, user_company, user_telephone, ",
+        "is_delete, province",
         "from sys_uav_user",
         "where user_id = #{userId,jdbcType=SMALLINT}"
     })
@@ -46,7 +49,9 @@ public interface UserMapper {
         @Result(column="user_privileges", property="userPrivileges", jdbcType=JdbcType.VARCHAR),
         @Result(column="user_sex", property="userSex", jdbcType=JdbcType.VARCHAR),
         @Result(column="user_company", property="userCompany", jdbcType=JdbcType.VARCHAR),
-        @Result(column="user_telephone", property="userTelephone", jdbcType=JdbcType.CHAR)
+        @Result(column="user_telephone", property="userTelephone", jdbcType=JdbcType.CHAR),
+        @Result(column="is_delete", property="isDelete", jdbcType=JdbcType.INTEGER),
+        @Result(column="province", property="province", jdbcType=JdbcType.VARCHAR)
     })
     User selectByPrimaryKey(Short userId);
 
@@ -60,7 +65,9 @@ public interface UserMapper {
           "user_privileges = #{userPrivileges,jdbcType=VARCHAR},",
           "user_sex = #{userSex,jdbcType=VARCHAR},",
           "user_company = #{userCompany,jdbcType=VARCHAR},",
-          "user_telephone = #{userTelephone,jdbcType=CHAR}",
+          "user_telephone = #{userTelephone,jdbcType=CHAR},",
+          "is_delete = #{isDelete,jdbcType=INTEGER},",
+          "province = #{province,jdbcType=VARCHAR}",
         "where user_id = #{userId,jdbcType=SMALLINT}"
     })
     int updateByPrimaryKey(User record);

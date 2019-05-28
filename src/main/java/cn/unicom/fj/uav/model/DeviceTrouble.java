@@ -17,6 +17,8 @@ public class DeviceTrouble {
 
     private String isDelete;
 
+    private String isCandel;
+
     public Short getId() {
         return id;
     }
@@ -71,5 +73,13 @@ public class DeviceTrouble {
 
     public void setIsDelete(String isDelete) {
         this.isDelete = isDelete == null ? null : isDelete.trim();
+    }
+
+    public String getIsCandel() {
+        return isCandel;
+    }
+
+    public void setIsCandel(String isCandel) {
+        this.isCandel = isCandel == null ? null : isCandel.trim();
     }
 }

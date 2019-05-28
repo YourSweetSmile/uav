@@ -37,6 +37,10 @@ public class DeviceTroubleSqlProvider {
             sql.VALUES("is_delete", "#{isDelete,jdbcType=VARCHAR}");
         }
         
+        if (record.getIsCandel() != null) {
+            sql.VALUES("is_candel", "#{isCandel,jdbcType=VARCHAR}");
+        }
+        
         return sql.toString();
     }
 
@@ -66,6 +70,10 @@ public class DeviceTroubleSqlProvider {
         
         if (record.getIsDelete() != null) {
             sql.SET("is_delete = #{isDelete,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getIsCandel() != null) {
+            sql.SET("is_candel = #{isCandel,jdbcType=VARCHAR}");
         }
         
         sql.WHERE("id = #{id,jdbcType=SMALLINT}");
