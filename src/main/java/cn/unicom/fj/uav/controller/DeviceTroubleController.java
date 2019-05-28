@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/deviceTrouble")
+@RequestMapping("/trouble")
 public class DeviceTroubleController {
 
     @Autowired
@@ -21,7 +21,7 @@ public class DeviceTroubleController {
      * @param deviceTroubleHelper
      * @return
      */
-    @GetMapping("/list")
+    @PostMapping("/list")
     public PageInfo getDeviceTrouble(@RequestParam(value = "pageNo", defaultValue = "1") Integer pageNo,
                                      @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
                                      @RequestBody DeviceTroubleHelper deviceTroubleHelper) {
@@ -34,7 +34,7 @@ public class DeviceTroubleController {
      * @param record
      * @return
      */
-    @PostMapping("/add")
+    @PostMapping("/create")
     public Object addData(@RequestBody DeviceTrouble record) {
         return deviceTroubleService.insertData(record);
     }
