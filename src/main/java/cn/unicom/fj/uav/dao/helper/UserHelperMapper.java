@@ -27,8 +27,8 @@ public interface UserHelperMapper extends UserMapper {
      */
     @Select({
             "SELECT DATE_FORMAT(trouble_date,'%Y-%m-%d') AS troubleData,",
-            "SUM(CASE WHEN is_delete=1 THEN 1 ELSE 0 END)AS cadelCount,",
-            "SUM(CASE WHEN is_delete=0 THEN 1 ELSE 0 END)AS uncandelCount",
+            "SUM(CASE WHEN is_candel=1 THEN 1 ELSE 0 END)AS cadelCount,",
+            "SUM(CASE WHEN is_candel=0 THEN 1 ELSE 0 END)AS uncandelCount",
             "FROM rel_device_trouble",
             "GROUP BY troubleData"
     })
