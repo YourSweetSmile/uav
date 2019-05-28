@@ -70,6 +70,12 @@ public class DeviceController {
         deviceService.stopDev(id, deviceStatus);
     }
 
+    /**
+     * 导入文件得到设备属性
+     * @param mFile
+     * @return
+     * @throws Exception
+     */
     @PostMapping("/file/import")
     public Device importDevice(@RequestParam("file") MultipartFile mFile) throws Exception {
 

@@ -17,24 +17,28 @@ public class TaskDevService {
 
 
 
-    public int insert( Task data){
-        System.out.println(data instanceof Task);
-
-        return taskDevHelperMapper.insert(data);
-    }
+//    public int insert( Task data){
+//        System.out.println(data instanceof Task);
+//
+//        return taskDevHelperMapper.insert(data);
+//    }
 
     public List search(TaskDevHelper data){
         return taskDevHelperMapper.search(data);
     }
 
-    public List<String> devicesAll(){
+    public List<Device> devicesAll(){
         return taskDevHelperMapper.selectDeviceAll();
     }
 
     public void taskDelete(Integer id){
         taskDevHelperMapper.taskDelete(id);
     }
-    public void createTask(Task data){
-        taskDevHelperMapper.insert(data);
+    public int createTask(TaskDevHelper data){
+        return  taskDevHelperMapper.create(data);
+
+    }
+    public void changeStatus(Task record){
+        taskDevHelperMapper.taskStatus(record);
     }
 }

@@ -69,8 +69,8 @@ public class DeviceSqlProvider {
             sql.VALUES("emc_res", "#{emcRes,jdbcType=DECIMAL}");
         }
         
-        if (record.getImgId() != null) {
-            sql.VALUES("img_id", "#{imgId,jdbcType=SMALLINT}");
+        if (record.getImgUrl() != null) {
+            sql.VALUES("img_url", "#{imgUrl,jdbcType=VARCHAR}");
         }
         
         if (record.getWingLoss() != null) {
@@ -168,8 +168,8 @@ public class DeviceSqlProvider {
             sql.SET("emc_res = #{emcRes,jdbcType=DECIMAL}");
         }
         
-        if (record.getImgId() != null) {
-            sql.SET("img_id = #{imgId,jdbcType=SMALLINT}");
+        if (record.getImgUrl() != null) {
+            sql.SET("img_url = #{imgUrl,jdbcType=VARCHAR}");
         }
         
         if (record.getWingLoss() != null) {

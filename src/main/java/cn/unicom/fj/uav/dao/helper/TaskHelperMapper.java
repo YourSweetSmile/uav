@@ -71,11 +71,8 @@ public interface TaskHelperMapper extends TaskMapper{
 
     @Update({
             "update ent_task",
-            "set task_name = #{taskName,jdbcType=VARCHAR},",
-            "task_type_id = #{taskTypeId,jdbcType=TINYINT},",
-            "task_start_time = #{taskStartTime,jdbcType=TIMESTAMP},",
-            "rode_id = #{rodeId,jdbcType=SMALLINT},",
-            "task_status = #{taskStatus,jdbcType=CHAR},",
+            "set task_type_id = #{taskTypeId,jdbcType=TINYINT},",
+            "task_start_time = #{taskStartTime,jdbcType=TIMESTAMP}",
             "where id = #{id,jdbcType=SMALLINT}"
     })
     int updateTaskByPrimaryKey(Task record);

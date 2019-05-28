@@ -21,11 +21,15 @@ public class TaskDevController {
     @Autowired
     private TaskDevService taskDevService;
 
-    @RequestMapping(value = "insert")
-    public int insert(@RequestBody Task data) {
-        return taskDevService.insert(data);
-    }
-
+//    @RequestMapping(value = "insert")
+//    public int insert(@RequestBody Task data) {
+//        return taskDevService.insert(data);
+//    }
+@RequestMapping(value = "list")
+public JSONResult search(@RequestBody TaskDevHelper data) {
+    List res = taskDevService.search(data);
+    return new JSONResult().ok(res);
+}
     @RequestMapping(value = "search")
     public JSONResult search(@RequestBody TaskDevHelper data,
                              @RequestParam(value = "page", defaultValue = "1") Integer page,
@@ -49,9 +53,14 @@ public class TaskDevController {
     public void delete(@RequestParam(value = "id") Integer id){
         taskDevService.taskDelete(id);
     }
+
     @RequestMapping(value = "create")
-    public void create(@RequestBody Task data){
+    public void create(@RequestBody TaskDevHelper data){
         System.out.println("========>"+data);
         taskDevService.createTask(data);
+    }
+    @RequestMapping(value = "change")
+    public void create(@RequestBody Task data){
+        taskDevService.changeStatus(data);
     }
 }

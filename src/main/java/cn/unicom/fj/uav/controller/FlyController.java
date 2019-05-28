@@ -21,11 +21,11 @@ import java.util.List;
 public class FlyController {
   @Autowired
   private FlyService flyService;
-  @RequestMapping(value = "flyArea")
-  //查询飞行区域统计表字段
-  public List<FlyTask> getAllNews(){
+  @RequestMapping(value = "flyCount/{taskId}")
+ //统计飞行次数,id为任务类型
+  public List<FlyTask> getAllNews(@PathVariable(name="taskId") int taskId){
 
-   List<FlyTask> list=flyService.getAllTask();
+   List<FlyTask> list=flyService.getFlyCount(taskId);
     return list;
   }
 //  //删除

@@ -19,4 +19,8 @@ public class TaskEchartController {
     public List<TaskEchartHelper> getTaskCount(){
         return taskEchartService.getTaskCount();
     }
+    @RequestMapping(value = "count")
+    public List<TaskEchartHelper> getCountByDate(@RequestParam Short type){
+        return taskEchartService.getCountByDate(type);
+    }
 }

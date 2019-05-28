@@ -49,6 +49,8 @@ mybatis:
   # sql语句的打印
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  #驼峰下划线转换
+    map-underscore-to-camel-case: true
 
 
 
