@@ -13,7 +13,7 @@ public class UserHelper extends User {
     private Integer addcount;
     private Integer delcount;
     private Integer calNum;
-    private String show_time;
+    private String showTime;
     private String provin;
     private Integer allNum;
     //首页设备
@@ -28,7 +28,7 @@ public class UserHelper extends User {
     public UserHelper() {
     }
 
-    public UserHelper(User user, Integer allcount, Integer girlcount, Integer boycount, Integer addcount, Integer delcount, Integer calNum, String show_time, String provin, Integer allNum, String device, Integer stopCount, Integer usedCount, String troubleData, Integer cadelCount, Integer uncandelCount) {
+    public UserHelper(User user, Integer allcount, Integer girlcount, Integer boycount, Integer addcount, Integer delcount, Integer calNum, String showTime, String provin, Integer allNum, String device, Integer stopCount, Integer usedCount, String troubleData, Integer cadelCount, Integer uncandelCount) {
         this.user = user;
         this.allcount = allcount;
         this.girlcount = girlcount;
@@ -36,7 +36,7 @@ public class UserHelper extends User {
         this.addcount = addcount;
         this.delcount = delcount;
         this.calNum = calNum;
-        this.show_time = show_time;
+        this.showTime = showTime;
         this.provin = provin;
         this.allNum = allNum;
         this.device = device;
@@ -104,11 +104,11 @@ public class UserHelper extends User {
     }
 
     public String getShow_time() {
-        return show_time;
+        return showTime;
     }
 
-    public void setShow_time(String show_time) {
-        this.show_time = show_time;
+    public void setShow_time(String showTime) {
+        this.showTime = showTime;
     }
 
     public String getProvin() {
@@ -173,5 +173,27 @@ public class UserHelper extends User {
 
     public void setUncandelCount(Integer uncandelCount) {
         this.uncandelCount = uncandelCount;
+    }
+
+    @Override
+    public String toString() {
+        return "UserHelper{" +
+                "user=" + user +
+                ", allcount=" + allcount +
+                ", girlcount=" + girlcount +
+                ", boycount=" + boycount +
+                ", addcount=" + addcount +
+                ", delcount=" + delcount +
+                ", calNum=" + calNum +
+                ", showTime='" + showTime + '\'' +
+                ", provin='" + provin + '\'' +
+                ", allNum=" + allNum +
+                ", device='" + device + '\'' +
+                ", stopCount=" + stopCount +
+                ", usedCount=" + usedCount +
+                ", troubleData='" + troubleData + '\'' +
+                ", cadelCount=" + cadelCount +
+                ", uncandelCount=" + uncandelCount +
+                '}';
     }
 }

@@ -102,7 +102,9 @@ public class UserControl {
      */
     @RequestMapping("/getArray")
     public List<UserHelper> getArray() {
-        return userService.constructorArray();
+        List<UserHelper> aa=userService.constructorArray();
+        System.out.println(aa.get(0));
+        return aa;
     }
 
     /**

@@ -50,12 +50,16 @@ public interface UserHelperMapper extends UserMapper {
      * 获取月份与对应的总数
      */
     @Select({
-            "SELECT IFNULL(COUNT(user_date),0) AS calNum,DATE_FORMAT(c.datelist,'%Y-%m') AS show_time ",
-            "FROM sys_uav_user a RIGHT JOIN calendar c ON MONTH(c.datelist) = MONTH(a.user_date) AND a.user_date < CURDATE() AND a.user_date >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR) ",
-            "GROUP BY show_time ORDER BY show_time ASC "
+            "SELECT IFNULL(COUNT(user_date),0) AS calNum,DATE_FORMAT(c.datelist,'%Y-%m') AS show_time",
+            "FROM sys_uav_user a RIGHT JOIN calendar c ON MONTH(c.datelist) = MONTH(a.user_date) AND a.user_date < CURDATE()",
+            "AND a.user_date >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)",
+            "GROUP BY show_time ORDER BY show_time ASC"
+    })
+    @Results({
+            @Result(column="id", property="id", jdbcType= JdbcType.SMALLINT, id=true),
+            @Result(column="show_time", property="showTime", jdbcType=JdbcType.VARCHAR)
     })
     List<UserHelper> getArray();
-
     /**
      * 获取到各省份对应的人数
      */
