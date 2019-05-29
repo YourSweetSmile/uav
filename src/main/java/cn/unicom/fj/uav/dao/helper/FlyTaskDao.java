@@ -2,6 +2,7 @@ package cn.unicom.fj.uav.dao.helper;
 
 import cn.unicom.fj.uav.dao.TaskMapper;
 import cn.unicom.fj.uav.dao.TaskSqlProvider;
+import cn.unicom.fj.uav.model.Province;
 import cn.unicom.fj.uav.model.Task;
 import cn.unicom.fj.uav.model.helper.FlyTask;
 import cn.unicom.fj.uav.model.helper.RouteHelper;
@@ -13,13 +14,15 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
 @Repository
 @Mapper
 public interface FlyTaskDao extends TaskMapper {
   //统计飞行次数
   @Select({"SELECT t.id tid,t.task_type_id,t.rode_id,r.id rid,r.`route_arrival`,l.`longitude`,l.`latitude`,COUNT(r.`route_arrival`) cout \n" +
           "FROM ent_task t LEFT JOIN ent_route r ON t.rode_id=r.id \n" +
-          "LEFT JOIN ent_location l ON r.id=l.id\n" +
+          "LEFT JOIN ent_location l ON r.route_arrival=l.id\n" +
           "WHERE t.`task_type_id`=#{taskId} GROUP BY r.`route_arrival`"})
   @Results({
     @Result(column="longitude", property="longitude", jdbcType= JdbcType.DECIMAL),
@@ -55,8 +58,13 @@ int IsDeleteByPrimaryKey(Short id);
   int updateFlyTask(FlyTask record);
   //检索
   @Select("<script>" +
-          "select t.id tid,t.is_delete tis_delete,t.* from ent_task t left join ent_route r on t.rode_id=r.id where t.is_delete=0" +
-//    "select * from ent_task where 1=1" +
+          "SELECT t.*,t.id tid,t.is_delete tis_delete,r.`id` rid,r.`route_arrival`,l.id lid,l.location_name,q.district_id,q.district_name,c.city_id,c.city_name,p.province_id,p.province_name \n" +
+          "FROM ent_task t LEFT JOIN ent_route r ON t.`rode_id`=r.`id`\n" +
+          "LEFT JOIN ent_location l ON r.`route_arrival`=l.id\n" +
+          "LEFT JOIN ent_county q ON l.county_id=q.district_id\n" +
+          "LEFT JOIN ent_city c ON q.city_id=c.city_id\n" +
+          "LEFT JOIN ent_province p ON p.province_id=c.province_id where t.is_delete=0 and r.is_delete=0" +
+//    "select t.id tid,t.is_delete tis_delete,t.* from ent_task t left join ent_route r on t.rode_id=r.id where t.is_delete=0" +
 //    "<if test='taskType!=null and taskType!=\"\"'>" +
 //    " and task_type_id=#{taskType}"+
 //    "</if>"+
@@ -95,10 +103,46 @@ int IsDeleteByPrimaryKey(Short id);
     @Result(column = "task_type_id", property = "taskType",
         one=@One(select ="cn.unicom.fj.uav.dao.TaskTypeMapper.selectByPrimaryKey" ,fetchType= FetchType.EAGER)),
     @Result(column="rode_id", property="route",
-        one=@One(select ="cn.unicom.fj.uav.dao.helper.RouteHelperMapper.getRouteById" ,fetchType= FetchType.EAGER))
+        one=@One(select ="cn.unicom.fj.uav.dao.helper.RouteHelperMapper.getRouteById" ,fetchType= FetchType.EAGER)),
+
   })
 
   List<FlyTask> getNewsByCondition(FlyTask flyTask);
+//检索省份
+@Select({"SELECT * FROM ent_province"})
+@Results({
+        @Result(column="province_id", property="provinceId", jdbcType= JdbcType.TINYINT, id=true),
+        @Result(column="province_name", property="provinceName", jdbcType=JdbcType.VARCHAR)
+})
+List<FlyTask> getFlyProvince();
 
 
+@Select({"select  * " +
+        " from ent_city " +
+        "where province_id =#{provinceId}"})
+@Results({
+        @Result(column="city_id", property="cityId", jdbcType=JdbcType.VARCHAR, id=true),
+        @Result(column="city_name", property="cityName", jdbcType=JdbcType.VARCHAR),
+        @Result(column="province_id", property="provinceId", jdbcType=JdbcType.TINYINT)
+})
+List<FlyTask> getFlyCity(@Param("provinceId") String provinceId);
+
+@Select({"select * " +
+        " from ent_county " +
+        " where city_id = #{cityId}"})
+@Results({
+        @Result(column="district_id", property="districtId", jdbcType=JdbcType.VARCHAR, id=true),
+        @Result(column="district_name", property="districtName", jdbcType=JdbcType.VARCHAR),
+        @Result(column="city_id", property="cityId", jdbcType=JdbcType.VARCHAR)
+})
+List<FlyTask> getFlyGrid(@Param("cityId") String cityId);
+
+  @Select({"select * " +
+          " from ent_location " +
+          " where county_id = #{countyId}"})
+  @Results({
+          @Result(column="id", property="id", jdbcType=JdbcType.SMALLINT, id=true),
+          @Result(column="location_name", property="locationName", jdbcType=JdbcType.VARCHAR)
+  })
+  List<FlyTask> getFlyLocation(@Param("countyId") String countyId);
 }

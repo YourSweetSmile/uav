@@ -50,7 +50,7 @@ mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   #驼峰下划线转换
-  map-underscore-to-camel-case: true
+    map-underscore-to-camel-case: true
 
 
 
@@ -117,4 +117,6 @@ app:
     refreshTokenExpTime: 3600
     tokenSigningKey: ebor123
     tokenHeaderParam: X-Authorization
-
+  log:
+    path: /root/myfile/app-log/
+    level: "info"

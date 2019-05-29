@@ -1,9 +1,7 @@
 package cn.unicom.fj.uav.model.helper;
 
 
-import cn.unicom.fj.uav.model.Location;
-import cn.unicom.fj.uav.model.Task;
-import cn.unicom.fj.uav.model.TaskType;
+import cn.unicom.fj.uav.model.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -60,6 +58,96 @@ private RouteHelper route;
   public void setRoute(RouteHelper route) {
     this.route = route;
   }
+//省
+  private Province province;
+
+  public Province getProvince() {
+    return province;
+  }
+
+  public void setProvince(Province province) {
+    this.province = province;
+  }
+  private Byte provinceId;
+
+  private String provinceName;
+
+  public Byte getProvinceId() {
+    return provinceId;
+  }
+
+  public void setProvinceId(Byte provinceId) {
+    this.provinceId = provinceId;
+  }
+
+  public String getProvinceName() {
+    return provinceName;
+  }
+
+  public void setProvinceName(String provinceName) {
+    this.provinceName = provinceName;
+  }
+
+  //市
+  private City city;
+
+  public City getCity() {
+    return city;
+  }
+
+  public void setCity(City city) {
+    this.city = city;
+  }
+  private String cityId;
+
+  private String cityName;
+
+
+  public String getCityId() {
+    return cityId;
+  }
+
+  public void setCityId(String cityId) {
+    this.cityId = cityId;
+  }
+
+  public String getCityName() {
+    return cityName;
+  }
+
+  public void setCityName(String cityName) {
+    this.cityName = cityName;
+  }
+
+  //区
+  private County county;
+
+  public County getCounty() {
+    return county;
+  }
+
+  public void setCounty(County county) {
+    this.county = county;
+  }
+  private String districtId;
+
+  private String districtName;
+
+  public String getDistrictId() {
+    return districtId;
+  }
+
+  public void setDistrictId(String districtId) {
+    this.districtId = districtId;
+  }
+
+  public String getDistrictName() {
+    return districtName;
+  }
+
+  public void setDistrictName(String districtName) {
+    this.districtName = districtName;
+  }
 
   //location
   private Location location;
@@ -70,6 +158,19 @@ private RouteHelper route;
 
   public void setLocation(Location location) {
     this.location = location;
+  }
+
+
+  private String locationName;
+
+
+
+  public String getLocationName() {
+    return locationName;
+  }
+
+  public void setLocationName(String locationName) {
+    this.locationName = locationName;
   }
 
   private BigDecimal longitude;

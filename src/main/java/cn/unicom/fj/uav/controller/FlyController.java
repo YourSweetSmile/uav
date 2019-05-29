@@ -1,5 +1,6 @@
 package cn.unicom.fj.uav.controller;
 
+import cn.unicom.fj.uav.model.Province;
 import cn.unicom.fj.uav.model.Route;
 import cn.unicom.fj.uav.model.Task;
 import cn.unicom.fj.uav.model.helper.FlyTask;
@@ -15,6 +16,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "flyTask")
@@ -22,7 +24,7 @@ public class FlyController {
   @Autowired
   private FlyService flyService;
   @RequestMapping(value = "flyCount/{taskId}")
- //统计飞行次数,id为任务类型
+ //统计飞行次数,taskId为任务类型
   public List<FlyTask> getAllNews(@PathVariable(name="taskId") int taskId){
 
    List<FlyTask> list=flyService.getFlyCount(taskId);
@@ -66,4 +68,13 @@ public PageInfo<FlyTask> select(
   PageInfo<FlyTask> pageInfo=new PageInfo<>(list);
   return pageInfo;
 }
+//省份
+  @RequestMapping(value = "province")
+  public List<FlyTask> getFlyProvince(){return flyService.getFlyProvince();}
+  @RequestMapping(value = "city/{provinceId}")
+  public List<FlyTask> getCity(@PathVariable("provinceId") String provinceId){return flyService.getCity(provinceId);}
+  @RequestMapping(value = "grid/{cityId}")
+  List<FlyTask> getGrid(@PathVariable("cityId") String cityId ){return flyService.getGird(cityId);}
+  @RequestMapping(value = "location/{countyId}")
+  List<FlyTask> getFlyLocation(@PathVariable("countyId") String countyId ){return flyService.getFlyLocation(countyId);}
 }

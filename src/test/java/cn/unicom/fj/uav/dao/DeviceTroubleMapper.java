@@ -22,11 +22,11 @@ public interface DeviceTroubleMapper {
         "insert into rel_device_trouble (id, trouble_date, ",
         "device_id, task_id, ",
         "trouble_type, trouble_reason, ",
-        "is_delete)",
+        "is_delete, is_candel)",
         "values (#{id,jdbcType=SMALLINT}, #{troubleDate,jdbcType=TIMESTAMP}, ",
         "#{deviceId,jdbcType=SMALLINT}, #{taskId,jdbcType=SMALLINT}, ",
         "#{troubleType,jdbcType=VARCHAR}, #{troubleReason,jdbcType=VARCHAR}, ",
-        "#{isDelete,jdbcType=VARCHAR})"
+        "#{isDelete,jdbcType=VARCHAR}, #{isCandel,jdbcType=VARCHAR})"
     })
     int insert(DeviceTrouble record);
 
@@ -35,7 +35,8 @@ public interface DeviceTroubleMapper {
 
     @Select({
         "select",
-        "id, trouble_date, device_id, task_id, trouble_type, trouble_reason, is_delete",
+        "id, trouble_date, device_id, task_id, trouble_type, trouble_reason, is_delete, ",
+        "is_candel",
         "from rel_device_trouble",
         "where id = #{id,jdbcType=SMALLINT}"
     })
@@ -46,7 +47,8 @@ public interface DeviceTroubleMapper {
         @Result(column="task_id", property="taskId", jdbcType=JdbcType.SMALLINT),
         @Result(column="trouble_type", property="troubleType", jdbcType=JdbcType.VARCHAR),
         @Result(column="trouble_reason", property="troubleReason", jdbcType=JdbcType.VARCHAR),
-        @Result(column="is_delete", property="isDelete", jdbcType=JdbcType.VARCHAR)
+        @Result(column="is_delete", property="isDelete", jdbcType=JdbcType.VARCHAR),
+        @Result(column="is_candel", property="isCandel", jdbcType=JdbcType.VARCHAR)
     })
     DeviceTrouble selectByPrimaryKey(Short id);
 
@@ -60,7 +62,8 @@ public interface DeviceTroubleMapper {
           "task_id = #{taskId,jdbcType=SMALLINT},",
           "trouble_type = #{troubleType,jdbcType=VARCHAR},",
           "trouble_reason = #{troubleReason,jdbcType=VARCHAR},",
-          "is_delete = #{isDelete,jdbcType=VARCHAR}",
+          "is_delete = #{isDelete,jdbcType=VARCHAR},",
+          "is_candel = #{isCandel,jdbcType=VARCHAR}",
         "where id = #{id,jdbcType=SMALLINT}"
     })
     int updateByPrimaryKey(DeviceTrouble record);

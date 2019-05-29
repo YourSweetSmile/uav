@@ -8,7 +8,8 @@ public class User {
     private Short userId;
 
     private String userName;
-    @JsonFormat(pattern = "yyyy-MM-dd",locale = "zh",timezone = "")
+
+    @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "")
     private Date userDate;
 
     private String userPrivileges;
@@ -18,6 +19,10 @@ public class User {
     private String userCompany;
 
     private String userTelephone;
+
+    private Integer isDelete;
+
+    private String province;
 
     public Short getUserId() {
         return userId;
@@ -75,4 +80,19 @@ public class User {
         this.userTelephone = userTelephone == null ? null : userTelephone.trim();
     }
 
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province == null ? null : province.trim();
+    }
 }
