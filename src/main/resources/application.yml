@@ -117,5 +117,6 @@ app:
     refreshTokenExpTime: 3600
     tokenSigningKey: ebor123
     tokenHeaderParam: X-Authorization
-log:
-  path: /root/myfile/app-log/
+  log:
+    path: /root/myfile/app-log/
+    level: "info"
