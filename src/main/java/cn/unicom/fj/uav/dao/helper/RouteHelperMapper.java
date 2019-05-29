@@ -116,13 +116,13 @@ public interface RouteHelperMapper extends RouteMapper {
      * 查询路线管理模块折线图数据路线总数（柱形图折线图中预计飞行路线总数）
      */
     @Select("<script>" +
-            "SELECT COUNT(r.id) VALUE,r.route_start starttime" +
+            "SELECT COUNT(r.id) VALUE,DATE_FORMAT(r.route_start,'%Y-%m-%d') starttime" +
             " FROM ent_route r LEFT JOIN ent_location l ON r.route_leave=l.id" +
             " RIGHT JOIN" +
             " ent_county co ON co.district_id=l.county_id" +
             " WHERE co.city_id = #{cityId}" +
             " AND r.route_start BETWEEN (SELECT DATE_ADD(NOW(),INTERVAL -1 MONTH)) AND NOW()" +
-            " GROUP BY r.route_start"+
+            " GROUP BY DATE_FORMAT(r.route_start,'%Y-%m-%d')"+
             "</script>")
     @Results({
             @Result(column = "VALUE",property = "value"),
@@ -135,10 +135,10 @@ public interface RouteHelperMapper extends RouteMapper {
      * 查询路线管理模块折线图数据飞行机器总数
      */
     @Select("<script>" +
-            "SELECT COUNT(*) VALUE,t.task_build_time starttime" +
+            "SELECT COUNT(*) VALUE,DATE_FORMAT(t.task_build_time,'%Y-%m-%d') starttime" +
             " FROM ent_task t" +
             " WHERE t.task_build_time BETWEEN (SELECT DATE_ADD(NOW(),INTERVAL -1 MONTH)) AND NOW()" +
-            " GROUP BY t.task_build_time"+
+            " GROUP BY DATE_FORMAT(t.task_build_time,'%Y-%m-%d')"+
             "</script>")
     @Results({
             @Result(column = "VALUE",property = "value"),
